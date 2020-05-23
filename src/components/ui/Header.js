@@ -1,14 +1,14 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { useScrollTrigger } from '@material-ui/core';
+import { useScrollTrigger, Typography } from '@material-ui/core';
 
 function ElevationScroll(props) {
   const { children, window } = props;
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
-    threshold: 0,
+    threshold: 0
   });
 
   return React.cloneElement(children, {
@@ -20,7 +20,9 @@ const Header = props => {
   return (
     <ElevationScroll>
       <AppBar position='fixed'>
-        <Toolbar>Ace Evolution</Toolbar>
+        <Toolbar>
+          <Typography variant='h3'>Ace Evolution</Typography>
+        </Toolbar>
       </AppBar>
     </ElevationScroll>
   );

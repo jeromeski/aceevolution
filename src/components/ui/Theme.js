@@ -8,5 +8,10 @@ export default createMuiTheme({
     common: { blue: `${arcBlue}`, orange: `${arcOrange}` },
     primary: { main: `${arcBlue}`},
     secondary: { main: `${arcOrange}`}
+  },
+  typography: {
+    h3: {
+      fontWeight: 300
+    }
   }
 });
