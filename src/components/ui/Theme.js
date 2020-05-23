@@ -6,12 +6,18 @@ const arcOrange = '#FFBA60';
 export default createMuiTheme({
   palette: {
     common: { blue: `${arcBlue}`, orange: `${arcOrange}` },
-    primary: { main: `${arcBlue}`},
-    secondary: { main: `${arcOrange}`}
+    primary: { main: `${arcBlue}` },
+    secondary: { main: `${arcOrange}` }
   },
   typography: {
     h3: {
       fontWeight: 300
+    },
+    tab: {
+      fontFamily: 'Raleway',
+      textTransform: 'none',
+      fontWeight: '700',
+      fontSize: '1rem'
     }
   }
 });
