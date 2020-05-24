@@ -13,10 +13,15 @@ import MenuItem from '@material-ui/core/MenuItem';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import IconButton from '@material-ui/core/IconButton';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/styles';
-import IconButton from '@material-ui/core/IconButton';
+
+import uuid from 'react-uuid';
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -90,6 +95,16 @@ const useStyles = makeStyles(theme => ({
   drawerIcon: {
     height: '50px',
     width: '50px'
+  },
+  drawer: {
+    backgroundColor: theme.palette.common.blue
+  },
+  drawerItem: {
+    ...theme.typography.tab,
+    color: 'white'
+  },
+  drawerItemEstimate: {
+    backgroundColor: theme.palette.common.orange
   }
 }));
 
@@ -250,7 +265,7 @@ const Header = props => {
         elevation={0}>
         {menuOptions.map((option, i) => (
           <MenuItem
-            key={option}
+            key={uuid()}
             component={Link}
             to={option.link}
             classes={{ root: classes.menuItem }}
@@ -274,10 +289,76 @@ const Header = props => {
         disableDiscovery={iOS}
         open={openDrawer}
         onClose={() => setOpenDrawer(false)}
-        onOpen={() => setOpenDrawer(true)}>
-        Example Drawer
+        onOpen={() => setOpenDrawer(true)}
+        classes={{ paper: classes.drawer }}>
+        <List disablePadding>
+          <ListItem
+            onClick={() => setOpenDrawer(false)}
+            divider
+            button
+            component={Link}
+            to='/'>
+            <ListItemText className={classes.drawerItem} disableTypography>
+              Home
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => setOpenDrawer(false)}
+            divider
+            button
+            component={Link}
+            to='/services'>
+            <ListItemText className={classes.drawerItem} disableTypography>
+              Services
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => setOpenDrawer(false)}
+            divider
+            button
+            component={Link}
+            to='/revolution'>
+            <ListItemText className={classes.drawerItem} disableTypography>
+              The Revolution
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => setOpenDrawer(false)}
+            divider
+            button
+            component={Link}
+            to='/about'>
+            <ListItemText className={classes.drawerItem} disableTypography>
+              About Us
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => setOpenDrawer(false)}
+            divider
+            button
+            component={Link}
+            to='/contact'>
+            <ListItemText className={classes.drawerItem} disableTypography>
+              Contact Us
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            className={classes.drawerItemEstimate}
+            onClick={() => setOpenDrawer(false)}
+            divider
+            button
+            component={Link}
+            to='/estimate'>
+            <ListItemText className={classes.drawerItem} disableTypography>
+              Free Estimate
+            </ListItemText>
+          </ListItem>
+        </List>
       </SwipeableDrawer>
-      <IconButton className={classes.drawerIconContainer} onClick={() => setOpenDrawer(!openDrawer)} disableRipple>
+      <IconButton
+        className={classes.drawerIconContainer}
+        onClick={() => setOpenDrawer(!openDrawer)}
+        disableRipple>
         <MenuIcon className={classes.drawerIcon} />
       </IconButton>
     </Fragment>
