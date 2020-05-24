@@ -1,4 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.svg';
+
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
@@ -9,11 +12,11 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { useTheme } from '@material-ui/core/styles';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 
+import MenuIcon from '@material-ui/icons/Menu';
 import { makeStyles } from '@material-ui/styles';
-
-import logo from '../../assets/logo.svg';
-import { Link } from 'react-router-dom';
+import IconButton from '@material-ui/core/IconButton';
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -37,7 +40,7 @@ const useStyles = makeStyles(theme => ({
     },
     [theme.breakpoints.down('xs')]: {
       marginBottom: '1.25em'
-    },
+    }
   },
   logo: {
     height: '8em',
@@ -77,36 +80,49 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       opacity: 1
     }
+  },
+  drawerIconContainer: {
+    marginLeft: 'auto',
+    '&:hover': {
+      backgroundColor: 'transparent'
+    }
+  },
+  drawerIcon: {
+    height: '50px',
+    width: '50px'
   }
 }));
 
 const Header = props => {
   const classes = useStyles();
   const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down('md'))
+  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
+
   const [value, setValue] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
-  const handleChange = (e, value) => {
-    setValue(value);
+  const handleChange = (e, newValue) => {
+    setValue(newValue);
   };
 
   const handleClick = e => {
     setAnchorEl(e.currentTarget);
-    setOpen(true);
+    setOpenMenu(true);
   };
 
   const handleMenuItemClick = (e, i) => {
     setAnchorEl(null);
-    setOpen(false);
+    setOpenMenu(false);
     setSelectedIndex(i);
   };
 
   const handleClose = e => {
     setAnchorEl(null);
-    setOpen(false);
+    setOpenMenu(false);
   };
 
   const menuOptions = [
@@ -227,7 +243,7 @@ const Header = props => {
       <Menu
         id='simple-menu'
         anchorEl={anchorEl}
-        open={open}
+        open={openMenu}
         onClose={handleClose}
         MenuListProps={{ onMouseLeave: handleClose }}
         classes={{ paper: classes.menu }}
@@ -251,6 +267,22 @@ const Header = props => {
     </Fragment>
   );
 
+  const drawer = (
+    <Fragment>
+      <SwipeableDrawer
+        disableBackdropTransition={!iOS}
+        disableDiscovery={iOS}
+        open={openDrawer}
+        onClose={() => setOpenDrawer(false)}
+        onOpen={() => setOpenDrawer(true)}>
+        Example Drawer
+      </SwipeableDrawer>
+      <IconButton className={classes.drawerIconContainer} onClick={() => setOpenDrawer(!openDrawer)} disableRipple>
+        <MenuIcon className={classes.drawerIcon} />
+      </IconButton>
+    </Fragment>
+  );
+
   return (
     <Fragment>
       <ElevationScroll>
@@ -265,7 +297,7 @@ const Header = props => {
               }}>
               <img src={logo} alt='logo' className={classes.logo} />
             </Button>
-            {matches ? null : tabs}
+            {matches ? drawer : tabs}
           </Toolbar>
         </AppBar>
       </ElevationScroll>
