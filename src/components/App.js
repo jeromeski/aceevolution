@@ -16,8 +16,8 @@ function App() {
           <Route exact path='/mobileapps' component={() => <div>Mobile apps</div>} />
           <Route exact path='/websites' component={() => <div>Websites</div>} />
           <Route exact path='/revolution' component={() => <div>Revolution</div>} />
-          <Route exact path='/aboutus' component={() => <div>About Us</div>} />
-          <Route exact path='/contactus' component={() => <div>Contact Us</div>} />
+          <Route exact path='/about' component={() => <div>About Us</div>} />
+          <Route exact path='/contact' component={() => <div>Contact Us</div>} />
           <Route exact path='estimate' component={() => <div>Estimate</div>} />
         </Switch>
       </BrowserRouter>

@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
 import { makeStyles } from '@material-ui/styles';
+
 import logo from '../../assets/logo.svg';
 import { Link } from 'react-router-dom';
 
@@ -50,12 +54,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Header = () => {
+const Header = (props) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const handleChange = (e, value) => {
     setValue(value);
+  };
+
+  const handleClick = e => {
+    setAnchorEl(e.currentTarget);
+    setOpen(true);
+  };
+
+  const handleClose = e => {
+    setAnchorEl(null);
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -74,11 +90,17 @@ const Header = () => {
     }
   }, [value]);
   return (
-    <>
+    <Fragment>
       <ElevationScroll>
         <AppBar position='fixed'>
           <Toolbar disableGutters>
-            <Button to='/' component={Link} className={classes.logoContainer} onClick={() => {setValue(0)}}>
+            <Button
+              to='/'
+              component={Link}
+              className={classes.logoContainer}
+              onClick={() => {
+                setValue(0);
+              }}>
               <img src={logo} alt='logo' className={classes.logo} />
             </Button>
 
@@ -98,6 +120,9 @@ const Header = () => {
                 to='/services'
                 className={classes.tab}
                 label='Services'
+                aria-owns={anchorEl ? 'simple-menu' : undefined}
+                aria-haspopup={anchorEl ? 'true' : undefined}
+                onMouseOver={event => handleClick(event)}
               />
               <Tab
                 component={Link}
@@ -107,13 +132,13 @@ const Header = () => {
               />
               <Tab
                 component={Link}
-                to='/aboutus'
+                to='/about'
                 className={classes.tab}
                 label='About Us'
               />
               <Tab
                 component={Link}
-                to='/contactus'
+                to='/contact'
                 className={classes.tab}
                 label='Contact Us'
               />
@@ -124,11 +149,26 @@ const Header = () => {
               className={classes.button}>
               Free Estimate
             </Button>
+            <Menu
+              id='simple-menu'
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleClose}
+              MenuListProps={{ onMouseLeave: handleClose }}>
+              <MenuItem onClick={() => {handleClose(); setValue(1) }} component={Link} to='/services'>
+                Services
+              </MenuItem>
+              <MenuItem onClick={() => {handleClose(); setValue(1) }} component={Link} to='/customsoftware'>
+                Custom Software Development
+              </MenuItem>
+              <MenuItem onClick={() => {handleClose(); setValue(1) }} component={Link} to='/mobileapps'>Mobile App Development</MenuItem>
+              <MenuItem onClick={() => {handleClose(); setValue(1) }} component={Link} to='/websites'>Website Development</MenuItem>
+            </Menu>
           </Toolbar>
         </AppBar>
       </ElevationScroll>
       <div className={classes.toolbarMargin} />
-    </>
+    </Fragment>
   );
 };
 
