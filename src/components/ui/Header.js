@@ -108,11 +108,13 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.common.orange
   },
   drawerItemSelected: {
-    ...theme.typography.tab,
-    color: 'white',
-    opacity: 1
+    '& .MuiListItemText-root': {
+      opacity: 1
+    }
   },
-
+  appbar: {
+    zIndex: theme.zIndex.modal + 1
+  }
 }));
 
 const Header = props => {
@@ -149,14 +151,36 @@ const Header = props => {
 
   const menuOptions = [
     { name: 'Services', link: '/services', activeIndex: 1, selectedIndex: 0 },
-    { name: 'Custom Software Development', link: '/customsoftware', activeIndex: 1, selectedIndex: 1 },
-    { name: 'Mobile App Development', link: '/mobileapps', activeIndex: 1, selectedIndex: 2  },
-    { name: 'Website Development', link: '/websites', activeIndex: 1, selectedIndex: 3  }
+    {
+      name: 'Custom Software Development',
+      link: '/customsoftware',
+      activeIndex: 1,
+      selectedIndex: 1
+    },
+    {
+      name: 'Mobile App Development',
+      link: '/mobileapps',
+      activeIndex: 1,
+      selectedIndex: 2
+    },
+    {
+      name: 'Website Development',
+      link: '/websites',
+      activeIndex: 1,
+      selectedIndex: 3
+    }
   ];
 
   const routes = [
     { name: 'Home', link: '/', activeIndex: 0 },
-    { name: 'Services', link: '/services', activeIndex: 1, ariaOwns: anchorEl ? 'simple-menu' : undefined, ariaPopup: anchorEl ? 'true' : undefined, mouseOver: event => handleClick(event) },
+    {
+      name: 'Services',
+      link: '/services',
+      activeIndex: 1,
+      ariaOwns: anchorEl ? 'simple-menu' : undefined,
+      ariaPopup: anchorEl ? 'true' : undefined,
+      mouseOver: event => handleClick(event)
+    },
     { name: 'The Revolution', link: '/revolution', activeIndex: 2 },
     { name: 'About Us', link: 'about', activeIndex: 3 },
     { name: 'Contact Us', link: '/contact', activeIndex: 4 }
@@ -177,7 +201,6 @@ const Header = props => {
           break;
       }
     });
-    
   }, [value, menuOptions, selectedIndex, routes]);
 
   const tabs = (
@@ -188,8 +211,16 @@ const Header = props => {
         className={classes.tabContainer}
         indicatorColor='primary'>
         {routes.map((route, index) => (
-          <Tab key={`${route}${index}`} className={classes.tab} component={Link} to={route.link} label={route.name} aria-owns={route.ariaOwns} aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver}></Tab>
-        ))}        
+          <Tab
+            key={`${route}${index}`}
+            className={classes.tab}
+            component={Link}
+            to={route.link}
+            label={route.name}
+            aria-owns={route.ariaOwns}
+            aria-haspopup={route.ariaPopup}
+            onMouseOver={route.mouseOver}></Tab>
+        ))}
       </Tabs>
       <Button variant='contained' color='secondary' className={classes.button}>
         Free Estimate
@@ -202,8 +233,8 @@ const Header = props => {
         MenuListProps={{ onMouseLeave: handleClose }}
         classes={{ paper: classes.menu }}
         elevation={0}
-        keepMounted
-        >
+        style={{ zIndex: 1302 }}
+        keepMounted>
         {menuOptions.map((option, i) => (
           <MenuItem
             key={uuid()}
@@ -232,14 +263,31 @@ const Header = props => {
         onClose={() => setOpenDrawer(false)}
         onOpen={() => setOpenDrawer(true)}
         classes={{ paper: classes.drawer }}>
+        <div className={classes.toolbarMargin} />
         <List disablePadding>
           {routes.map((route, index) => (
-            <ListItem divider button component={Link} to={route.link} selected={value === route.activeIndex} key={`${route}${route.activeIndex}`} onClick={() => {setOpenDrawer(false); setValue(route.activeIndex)}}>
-              <ListItemText className={route.activeIndex ? `classes.drawerItem ${classes.drawerItemSelected}` : classes.drawerItem} disableTypography>{route.name}</ListItemText>
+            <ListItem
+              divider
+              button
+              component={Link}
+              to={route.link}
+              selected={value === route.activeIndex}
+              key={`${route}${route.activeIndex}`}
+              onClick={() => {
+                setOpenDrawer(false);
+                setValue(route.activeIndex);
+              }}
+              classes={{ selected: classes.drawerItemSelected }}>
+              <ListItemText className={classes.drawerItem} disableTypography>
+                {route.name}
+              </ListItemText>
             </ListItem>
           ))}
           <ListItem
-            className={classes.drawerItemEstimate}
+            classes={{
+              root: classes.drawerItemEstimate,
+              selected: classes.drawerItemSelected
+            }}
             onClick={() => {
               setOpenDrawer(false);
               setValue(5);
@@ -249,13 +297,7 @@ const Header = props => {
             component={Link}
             to='/estimate'
             selected={value === 5}>
-            <ListItemText
-              className={
-                value === 5
-                  ? `classes.drawerItem ${classes.drawerItemSelected}`
-                  : classes.drawerItem
-              }
-              disableTypography>
+            <ListItemText className={classes.drawerItem} disableTypography>
               Free Estimate
             </ListItemText>
           </ListItem>
@@ -273,7 +315,7 @@ const Header = props => {
   return (
     <Fragment>
       <ElevationScroll>
-        <AppBar position='fixed'>
+        <AppBar position='fixed' className={classes.appbar}>
           <Toolbar disableGutters>
             <Button
               to='/'
