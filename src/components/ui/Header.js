@@ -111,7 +111,8 @@ const useStyles = makeStyles(theme => ({
     ...theme.typography.tab,
     color: 'white',
     opacity: 1
-  }
+  },
+
 }));
 
 const Header = props => {
@@ -155,7 +156,7 @@ const Header = props => {
 
   const routes = [
     { name: 'Home', link: '/', activeIndex: 0 },
-    { name: 'Services', link: '/services', activeIndex: 1 },
+    { name: 'Services', link: '/services', activeIndex: 1, ariaOwns: anchorEl ? 'simple-menu' : undefined, ariaPopup: anchorEl ? 'true' : undefined, mouseOver: event => handleClick(event) },
     { name: 'The Revolution', link: '/revolution', activeIndex: 2 },
     { name: 'About Us', link: 'about', activeIndex: 3 },
     { name: 'Contact Us', link: '/contact', activeIndex: 4 }
@@ -186,34 +187,9 @@ const Header = props => {
         onChange={handleChange}
         className={classes.tabContainer}
         indicatorColor='primary'>
-        <Tab component={Link} to='/' className={classes.tab} label='Home' />
-        <Tab
-          component={Link}
-          to='/services'
-          className={classes.tab}
-          label='Services'
-          aria-owns={anchorEl ? 'simple-menu' : undefined}
-          aria-haspopup={anchorEl ? 'true' : undefined}
-          onMouseOver={event => handleClick(event)}
-        />
-        <Tab
-          component={Link}
-          to='/revolution'
-          className={classes.tab}
-          label='The Revolution'
-        />
-        <Tab
-          component={Link}
-          to='/about'
-          className={classes.tab}
-          label='About Us'
-        />
-        <Tab
-          component={Link}
-          to='/contact'
-          className={classes.tab}
-          label='Contact Us'
-        />
+        {routes.map((route, index) => (
+          <Tab key={`${route}${index}`} className={classes.tab} component={Link} to={route.link} label={route.name} aria-owns={route.ariaOwns} aria-haspopup={route.ariaPopup} onMouseOver={route.mouseOver}></Tab>
+        ))}        
       </Tabs>
       <Button variant='contained' color='secondary' className={classes.button}>
         Free Estimate
@@ -225,7 +201,9 @@ const Header = props => {
         onClose={handleClose}
         MenuListProps={{ onMouseLeave: handleClose }}
         classes={{ paper: classes.menu }}
-        elevation={0}>
+        elevation={0}
+        keepMounted
+        >
         {menuOptions.map((option, i) => (
           <MenuItem
             key={uuid()}
@@ -255,106 +233,11 @@ const Header = props => {
         onOpen={() => setOpenDrawer(true)}
         classes={{ paper: classes.drawer }}>
         <List disablePadding>
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(0);
-            }}
-            divider
-            button
-            component={Link}
-            to='/'
-            selected={value === 0}>
-            <ListItemText
-              className={
-                value === 0
-                  ? `classes.drawerItem ${classes.drawerItemSelected}`
-                  : classes.drawerItem
-              }
-              disableTypography>
-              Home
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(1);
-            }}
-            divider
-            button
-            component={Link}
-            to='/services'
-            selected={value === 1}>
-            <ListItemText
-              className={
-                value === 1
-                  ? `classes.drawerItem ${classes.drawerItemSelected}`
-                  : classes.drawerItem
-              }
-              disableTypography>
-              Services
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(2);
-            }}
-            divider
-            button
-            component={Link}
-            to='/revolution'
-            selected={value === 2}>
-            <ListItemText
-              className={
-                value === 2
-                  ? `classes.drawerItem ${classes.drawerItemSelected}`
-                  : classes.drawerItem
-              }
-              disableTypography>
-              The Revolution
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(3);
-            }}
-            divider
-            button
-            component={Link}
-            to='/about'
-            selected={value === 3}>
-            <ListItemText
-              className={
-                value === 3
-                  ? `classes.drawerItem ${classes.drawerItemSelected}`
-                  : classes.drawerItem
-              }
-              disableTypography>
-              About Us
-            </ListItemText>
-          </ListItem>
-          <ListItem
-            onClick={() => {
-              setOpenDrawer(false);
-              setValue(4);
-            }}
-            divider
-            button
-            component={Link}
-            to='/contact'
-            selected={value === 4}>
-            <ListItemText
-              className={
-                value === 4
-                  ? `classes.drawerItem ${classes.drawerItemSelected}`
-                  : classes.drawerItem
-              }
-              disableTypography>
-              Contact Us
-            </ListItemText>
-          </ListItem>
+          {routes.map((route, index) => (
+            <ListItem divider button component={Link} to={route.link} selected={value === route.activeIndex} key={`${route}${route.activeIndex}`} onClick={() => {setOpenDrawer(false); setValue(route.activeIndex)}}>
+              <ListItemText className={route.activeIndex ? `classes.drawerItem ${classes.drawerItemSelected}` : classes.drawerItem} disableTypography>{route.name}</ListItemText>
+            </ListItem>
+          ))}
           <ListItem
             className={classes.drawerItemEstimate}
             onClick={() => {
