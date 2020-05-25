@@ -118,16 +118,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Header = props => {
-  const {value, setValue, selectedIndex, setSelectedIndex} = props;
+  const { value, setValue, selectedIndex, setSelectedIndex } = props;
   const classes = useStyles();
   const theme = useTheme();
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
-  
   const [anchorEl, setAnchorEl] = useState(null);
   const [openMenu, setOpenMenu] = useState(false);
-  
+
   const [openDrawer, setOpenDrawer] = useState(false);
 
   const handleChange = (e, newValue) => {
@@ -188,6 +187,7 @@ const Header = props => {
   ];
 
   useEffect(() => {
+    const { value, setValue, selectedIndex, setSelectedIndex } = props;
     [...menuOptions, ...routes].forEach(route => {
       switch (window.location.pathname) {
         case `${route.link}`:
@@ -202,7 +202,7 @@ const Header = props => {
           break;
       }
     });
-  }, [value, menuOptions, selectedIndex, routes]);
+  }, [value, menuOptions, selectedIndex, routes, props]);
 
   const tabs = (
     <Fragment>

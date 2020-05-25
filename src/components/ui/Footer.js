@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Footer = props => {
-  const { value, setValue, selectedIndex, setSelectedIndex } = props;
+  const { setValue, setSelectedIndex } = props;
   const classes = useStyles();
 
   return (
@@ -64,7 +64,7 @@ const Footer = props => {
               to='/services'
               item
               className={classes.link}
-              onClick={() => {setValue(1); setSelectedIndex(1)}}>
+              onClick={() => {setValue(1); setSelectedIndex(0)}}>
               Services
             </Grid>
             <Grid
@@ -80,7 +80,7 @@ const Footer = props => {
               to='/mobileapps'
               item
               className={classes.link}
-              onClick={() => {setValue(1); setSelectedIndex(1)}}>
+              onClick={() => {setValue(1); setSelectedIndex(2)}}>
               Mobile App Development
             </Grid>
             <Grid
@@ -88,7 +88,7 @@ const Footer = props => {
               to='/websites'
               item
               className={classes.link}
-              onClick={() => {setValue(1); setSelectedIndex(1)}}>
+              onClick={() => {setValue(1); setSelectedIndex(3)}}>
               Website Development
             </Grid>
           </Grid>
@@ -100,7 +100,7 @@ const Footer = props => {
               to='/revolution'
               item
               className={classes.link}
-              onClick={() => {setValue(2); setSelectedIndex(2)}}>
+              onClick={() => {setValue(2)}}>
               The Revolution
             </Grid>
             <Grid
@@ -108,7 +108,7 @@ const Footer = props => {
               to='/revolution'
               item
               className={classes.link}
-              onClick={() => {setValue(2); setSelectedIndex(2)}}>
+              onClick={() => {setValue(2)}}>
               Vision
             </Grid>
             <Grid
@@ -116,7 +116,7 @@ const Footer = props => {
               to='/revolution'
               item
               className={classes.link}
-              onClick={() => {setValue(2); setSelectedIndex(2)}}>
+              onClick={() => {setValue(2)}}>
               Technology
             </Grid>
             <Grid
@@ -124,7 +124,7 @@ const Footer = props => {
               to='/revolution'
               item
               className={classes.link}
-              onClick={() => {setValue(2); setSelectedIndex(2)}}>
+              onClick={() => {setValue(2)}}>
               Process
             </Grid>
           </Grid>
