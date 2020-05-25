@@ -103,7 +103,7 @@ const Footer = props => {
                   setValue(1);
                   setSelectedIndex(1);
                 }}>
-                Custom Software Development
+                iOS/Android App Development
               </Grid>
               <Grid
                 component={Link}

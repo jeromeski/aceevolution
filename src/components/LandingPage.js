@@ -5,7 +5,10 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ButtonArrow from '../components/ui/ButtonArrow';
 import Typography from '@material-ui/core/Typography';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
+import mobileAppsIcon from '../assets/mobileIcon.svg';
 import animationData from '../animations/landinganimation/data';
 
 const useStyles = makeStyles(theme => ({
@@ -42,7 +45,11 @@ const useStyles = makeStyles(theme => ({
     ...theme.typography.learnButton,
     fontSize: '0.7rem',
     height: 35,
-    padding: 5
+    padding: 5,
+    width: 100,
+    [theme.breakpoints.down('sm')]: {
+      marginBottom: '2em'
+    }
   },
   mainContainer: {
     marginTop: '5em',
@@ -72,12 +79,19 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       marginLeft: 0
     }
+  },
+  serviceContainer: {
+    marginTop: '12em',
+    [theme.breakpoints.down('sm')]: {
+      padding: 25
+    }
   }
 }));
 
 const LandingPage = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   const defaultOptions = {
     loop: true,
@@ -125,15 +139,24 @@ const LandingPage = () => {
         </Grid>
       </Grid>
       <Grid item>
-        {/**------Services Block ------ */}
-        <Grid container direction='row'>
-          <Grid item>
+        {/**------Custom Software Block ------ */}
+        <Grid
+          container
+          direction='row'
+          justify={matchesSM ? 'center' : undefined}
+          className={classes.serviceContainer}>
+          <Grid
+            item
+            style={{
+              marginLeft: matchesSM ? 0 : '5em',
+              textAlign: matchesSM ? 'center' : undefined
+            }}>
             <Typography variant='h4'>Custom Software Development</Typography>
             <Typography variant='subtitle1' className={classes.subtitle}>
               Save Energy. Save Time. Save Money.
             </Typography>
             <Typography variant='subtitle1'>
-              Complete digital solutions, from investiagation to {' '}
+              Complete digital solutions, from investiagation to{' '}
               <span className={classes.specialText}>celebration.</span>
             </Typography>
             <Button variant='outlined' className={classes.learnButton}>
@@ -146,7 +169,48 @@ const LandingPage = () => {
             </Button>
           </Grid>
           <Grid item>
-            <img className={classes.icon} alt='custom software icon' src={customSoftwareIcon}/>
+            <img
+              className={classes.icon}
+              alt='custom software icon'
+              src={customSoftwareIcon}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid item>
+        {/**------iOS/Android Block ------ */}
+        <Grid
+          container
+          direction='row'
+          justify={matchesSM ? 'center' : 'flex-end'}
+          className={classes.serviceContainer}>
+          <Grid
+            item
+            style={{
+              textAlign: matchesSM ? 'center' : undefined
+            }}>
+            <Typography variant='h4'>iOS/Android App Development</Typography>
+            <Typography variant='subtitle1' className={classes.subtitle}>
+              Extend Functionality. Extend Access. Increase Engagement.
+            </Typography>
+            <Typography variant='subtitle1'>
+              Integrate your web experience or create a standalone app {matchesSM ? null : <br /> } with either mobile platform.
+            </Typography>
+            <Button variant='outlined' className={classes.learnButton}>
+              Learn More
+              <ButtonArrow
+                width={10}
+                height={10}
+                fill={theme.palette.common.blue}
+              />
+            </Button>
+          </Grid>
+          <Grid item style={{marginRight: matchesSM ? 0 : '5em'}}>
+            <img
+              className={classes.icon}
+              alt='mobile phone icon'
+              src={mobileAppsIcon}
+            />
           </Grid>
         </Grid>
       </Grid>
