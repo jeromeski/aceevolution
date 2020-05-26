@@ -12,7 +12,8 @@ import CardContent from '@material-ui/core/CardContent';
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
 import mobileAppsIcon from '../assets/mobileIcon.svg';
 import websitesIcon from '../assets/websiteIcon.svg';
-import revolutionBackground from '../assets/repeatingBackground.svg'
+import revolutionBackground from '../assets/repeatingBackground.svg';
+import infoBackground from '../assets/infoBackground.svg';
 import animationData from '../animations/landinganimation/data';
 
 const useStyles = makeStyles(theme => ({
@@ -111,6 +112,14 @@ const useStyles = makeStyles(theme => ({
       borderRadius: 0,
       width: '100%'
     }
+  },
+  infoBackground: {
+    backgroundImage: `url(${infoBackground})`,
+    backgroundPosition: 'center',
+    backgroundSize: ' cover',
+    backgroundRepeat: 'no-repeat',
+    height: '100%',
+    width: '100%'
   }
 }));
 
@@ -131,7 +140,7 @@ const LandingPage = () => {
   return (
     <Grid container direction='column' className={classes.mainContainer}>
       <Grid item>
-      {/**------Hero Block ------ */}
+        {/**------Hero Block ------ */}
         <Grid container direction='row' justify='flex-end' alignItems='center'>
           <Grid item sm className={classes.heroTextContainer}>
             <Typography variant='h2' align='center'>
@@ -281,8 +290,12 @@ const LandingPage = () => {
         </Grid>
       </Grid>
       <Grid item>
-      {/**------Revolution Block ------ */}
-        <Grid container style={{height: '100em', marginTop: '12em'}} alignItems='center' justify='center'>
+        {/**------Revolution Block ------ */}
+        <Grid
+          container
+          style={{ height: '100em', marginTop: '12em' }}
+          alignItems='center'
+          justify='center'>
           <Card className={classes.revolutionCard}>
             <CardContent>
               <Grid
@@ -292,7 +305,9 @@ const LandingPage = () => {
                 // style={{textAlign: 'center'}}
               >
                 <Grid item>
-                  <Typography variant='h3' gutterBottom>The Revolution</Typography>
+                  <Typography variant='h3' gutterBottom>
+                    The Revolution
+                  </Typography>
                 </Grid>
                 <Grid item>
                   <Typography variant='subtitle1'>
@@ -313,7 +328,37 @@ const LandingPage = () => {
               </Grid>
             </CardContent>
           </Card>
-          <div className={classes.revolutionBackground}/>
+          <div className={classes.revolutionBackground} />
+        </Grid>
+      </Grid>
+      <Grid item>
+        {/**------Information Block ------ */}
+        <Grid
+          container
+          style={{ height: '80em' }}
+          alignItems='center'
+          direction='row'>
+          <Grid item style={{ position: 'absolute', marginLeft: '5em' }}>
+            <Grid container direction='column'>
+              <Typography variant='h2' style={{ color: 'white' }}>
+                About Us
+              </Typography>
+              <Typography variant='subtitle2'>Let's get personal.</Typography>
+              <Grid item>
+                <Button variant='outlined' className={classes.learnButton}
+                  style={{color: 'white', borderColor: 'white'}}
+                >
+                  <span style={{ marginRight: 10 }}>Learn More</span>
+                  <ButtonArrow
+                    width={10}
+                    height={10}
+                    fill='white'
+                  />
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+          <div className={classes.infoBackground} />
         </Grid>
       </Grid>
     </Grid>
