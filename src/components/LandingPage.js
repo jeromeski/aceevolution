@@ -9,6 +9,8 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
+import CallToAction from './ui/CallToAction';
+
 import customSoftwareIcon from '../assets/Custom Software Icon.svg';
 import mobileAppsIcon from '../assets/mobileIcon.svg';
 import websitesIcon from '../assets/websiteIcon.svg';
@@ -398,6 +400,7 @@ const LandingPage = () => {
           <div className={classes.infoBackground} />
         </Grid>
       </Grid>
+      <CallToAction/>
     </Grid>
   );
 };
