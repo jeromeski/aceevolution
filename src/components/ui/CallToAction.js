@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import useMediaquery from '@material-ui/core/useMediaQuery';
 import ButtonArrow from './ButtonArrow';
 
 import background from '../../assets/background.jpg';
@@ -24,11 +25,14 @@ const useStyles = makeStyles(theme => ({
     backgroundPosition: 'center',
     backgroundSize: ' cover',
     backgroundRepeat: 'no-repeat',
+    backgroundAttachment: 'fixed',
     width: '100%',
     height: '60em',
     [theme.breakpoints.down('md')]: {
-      backgroundImage: `url(${mobileBackground})`
+      backgroundImage: `url(${mobileBackground})`,
+      backgroundAttachment: 'inherit'
     }
+    
   },
   estimateButton: {
     ...theme.typography.estimate,
@@ -36,16 +40,22 @@ const useStyles = makeStyles(theme => ({
     height: 80,
     width: 205,
     backgroundColor: theme.palette.common.orange,
-    marginRight: '5em'
+    marginRight: '5em',
+    marginLeft: '2em',
+    [theme.breakpoints.down('sm')]: {
+     marginRight: 0,
+     marginLeft: 0 
+    }
   }
 }));
 
 const CallToAction = () => {
   const classes = useStyles();
   const theme = useTheme();
+  const matchesSM = useMediaquery(theme.breakpoints.down('sm'))
   return (
-    <Grid container alignItems='center' justify='space-between' className={classes.background}>
-      <Grid item style={{ marginLeft: '5em'}}>
+    <Grid container alignItems='center' justify={matchesSM ? 'center': 'space-between'} className={classes.background} direction={matchesSM ? 'column' : 'row'}>
+      <Grid item style={{ marginLeft: matchesSM ? 0 : '5em', textAlign: matchesSM ? 'center': 'inherit'}}>
         <Grid container direction='column'>
           <Typography variant='h2'>
             Simple Software.
