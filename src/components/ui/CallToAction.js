@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -42,6 +43,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.common.orange,
     marginRight: '5em',
     marginLeft: '2em',
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light
+    },
     [theme.breakpoints.down('sm')]: {
      marginRight: 0,
      marginLeft: 0 
@@ -49,7 +53,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CallToAction = () => {
+const CallToAction = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaquery(theme.breakpoints.down('sm'))
@@ -67,6 +71,8 @@ const CallToAction = () => {
           </Typography>
           <Grid item>
             <Button
+              onClick={() => props.setValue(2)}
+              component={Link} to='/revolution'
               variant='outlined'
               className={classes.learnButton}
               style={{
@@ -84,7 +90,7 @@ const CallToAction = () => {
         </Grid>
       </Grid>
       <Grid item>
-        <Button variant='contained' className={classes.estimateButton}>Free Estimate</Button>
+        <Button onClick={() => props.setValue(5)} component={Link} to='/estimate' variant='contained' className={classes.estimateButton}>Free Estimate</Button>
       </Grid>
     </Grid>
   );
