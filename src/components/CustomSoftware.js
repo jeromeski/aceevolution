@@ -2,7 +2,13 @@ import React from 'react';
 import Lottie from 'react-lottie';
 import { Link } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import { Grid, IconButton, Typography, useMediaQuery } from '@material-ui/core';
+import {
+  Grid,
+  IconButton,
+  Typography,
+  useMediaQuery,
+  Hidden
+} from '@material-ui/core';
 import backArrow from '../assets/backArrow.svg';
 import forwardArrow from '../assets/forwardArrow.svg';
 import lightbulb from '../assets/bulb.svg';
@@ -12,9 +18,8 @@ import roots from '../assets/root.svg';
 
 import documentsAnimation from '../animations/documentsAnimation/data';
 import scaleAnimation from '../animations/scaleAnimation/data.json';
-import automationAnimation from '../animations/automationAnimation/data.json'
+import automationAnimation from '../animations/automationAnimation/data.json';
 import uxAnimation from '../animations/uxAnimation/data';
-
 
 const useStyles = makeStyles(theme => ({
   heading: {
@@ -73,66 +78,90 @@ const uxOptions = {
 const CustomSoftware = props => {
   const classes = useStyles();
   const theme = useTheme();
+  const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
+  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Grid container direction='column' className={classes.mainContainer}>
-      <Grid item container direction='row'>
-        <Grid
-          item
-          className={classes.arrowContainer}
-          style={{ marginRight: '1em', marginLeft: '-3.5em' }}>
-          <IconButton
-            component={Link}
-            style={{ backgroundColor: 'transparent' }}
-            to='/services'
-            onClick={() => {
-              props.setSelectedIndex(0);
-            }}>
-            <img src={backArrow} alt='Back to services page' />
-          </IconButton>
-        </Grid>
+      <Grid
+        item
+        container
+        direction='row'
+        justify={matchesMD ? 'center' : undefined}>
+        <Hidden mdDown>
+          <Grid
+            item
+            className={classes.arrowContainer}
+            style={{ marginRight: '1em', marginLeft: '-3.5em' }}>
+            <IconButton
+              component={Link}
+              style={{ backgroundColor: 'transparent' }}
+              to='/services'
+              onClick={() => {
+                props.setSelectedIndex(0);
+              }}>
+              <img src={backArrow} alt='Back to services page' />
+            </IconButton>
+          </Grid>
+        </Hidden>
         <Grid item container direction='column' className={classes.heading}>
           <Grid item>
-            <Typography variant='h2'>Custom Software Development</Typography>
+            <Typography variant='h2' align={matchesMD ? 'center' : undefined}>
+              Custom Software Development
+            </Typography>
           </Grid>
           <Grid item>
-            <Typography variant='body1' paragraph>
+            <Typography
+              variant='body1'
+              paragraph
+              align={matchesMD ? 'center' : undefined}>
               Whether we’re replacing old software or inventing new solutions,
               Arc Development is here to help your business tackle technology.
             </Typography>
-            <Typography variant='body1' paragraph>
+            <Typography
+              variant='body1'
+              paragraph
+              align={matchesMD ? 'center' : undefined}>
               Using regular commercial software leaves you with a lot of stuff
               you don’t need, without some of the stuff you do need, and
               ultimately controls the way you work. Without using any software
               at all you risk falling behind competitors and missing out on huge
               savings from increased efficiency.
             </Typography>
-            <Typography variant='body1' paragraph>
+            <Typography
+              variant='body1'
+              paragraph
+              align={matchesMD ? 'center' : undefined}>
               Our custom solutions are designed from the ground up with your
               needs, wants, and goals at the core. This collaborative process
               produces finely tuned software that is much more effective at
               improving your workflow and reducing costs than generalized
               options.
             </Typography>
-            <Typography variant='body1' paragraph>
+            <Typography
+              variant='body1'
+              paragraph
+              align={matchesMD ? 'center' : undefined}>
               We create exactly what you what, exactly how you want it.
             </Typography>
           </Grid>
         </Grid>
-        <Grid item className={classes.arrowContainer}>
-          <IconButton
-            style={{ background: 'transparent' }}
-            component={Link}
-            to='/mobileapps'
-            onClick={() => {
-              props.setSelectedIndex(2);
-            }}>
-            <img
-              src={forwardArrow}
-              alt='Forward to iOS/Android App Development page'
-            />
-          </IconButton>
-        </Grid>
+        <Hidden mdDown>
+          <Grid item className={classes.arrowContainer}>
+            <IconButton
+              style={{ background: 'transparent' }}
+              component={Link}
+              to='/mobileapps'
+              onClick={() => {
+                props.setSelectedIndex(2);
+              }}>
+              <img
+                src={forwardArrow}
+                alt='Forward to iOS/Android App Development page'
+              />
+            </IconButton>
+          </Grid>
+        </Hidden>
       </Grid>
       <Grid
         item
@@ -160,7 +189,7 @@ const CustomSoftware = props => {
           direction='column'
           md
           alignItems='center'
-          style={{ maxWidth: '40em' }}>
+          style={{ maxWidth: '40em', marginTop: matchesSM ? '10em' : 0, marginBottom: matchesSM ? '10em' : 0 }}>
           <Grid item>
             <Typography variant='h4'>Save Time</Typography>
           </Grid>
@@ -183,8 +212,14 @@ const CustomSoftware = props => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item container direction='row' justify='space-between'>
-        <Grid item container className={classes.itemContainer} md>
+      <Grid
+        item
+        container
+        alignItems={matchesMD ? 'center' : undefined}
+        direction={matchesMD ? 'column' : 'row'}
+        justify='space-between'
+        style={{ marginBottom: '10em' }}>
+        <Grid item container className={classes.itemContainer} style={{marginBottom: matchesMD ? '15em': 0}} md>
           <Grid item container direction='column' md>
             <Grid item>
               <Typography variant='h4'>Digital Documents & Data</Typography>
@@ -238,7 +273,11 @@ const CustomSoftware = props => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item container direction='row' style={{marginTop: '20em', marginBottom: '20em'}} >
+        <Grid
+          item
+          container
+          direction='row'
+          style={{ marginTop: '20em', marginBottom: '20em' }}>
           <Grid item container direction='column' alignItems='center'>
             <Grid item>
               <img
@@ -263,7 +302,15 @@ const CustomSoftware = props => {
             </Grid>
           </Grid>
         </Grid>
-        <Grid item container className={classes.itemContainer} md>
+      </Grid>
+      <Grid
+        item
+        container
+        alignItems={matchesMD ? 'center' : undefined}
+        direction={matchesMD ? 'column' : 'row'}
+        justify='space-between'
+        style={{ marginBottom: '10em' }}>
+        <Grid item container className={classes.itemContainer} style={{marginBottom: matchesMD ? '15em': 0}} md>
           <Grid item container direction='column' md>
             <Grid item>
               <Typography variant='h4'>Automation</Typography>
@@ -272,7 +319,6 @@ const CustomSoftware = props => {
               <Typography variant='body1' paragraph>
                 Why waste time when you don’t have to?
               </Typography>
-
               <Typography variant='body1' paragraph>
                 We can help you identify processes with time or event based
                 actions which can now easily be automated.
