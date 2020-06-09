@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
   Grid,
-  IconButton,
   Typography,
   useMediaQuery,
   TextField,
@@ -47,6 +46,22 @@ const useStyles = makeStyles(theme => ({
     width: 100,
     [theme.breakpoints.down('sm')]: {
       marginBottom: '2em'
+    }
+  },
+  message: {
+    border: `2px solid ${theme.palette.common.blue}`,
+    marginTop: '5em',
+    borderRadius: 5,
+  },
+  sendButton: {
+    ...theme.typography.estimate,
+    borderRadius: 50,
+    height: 45,
+    width: 245,
+    fontSize: '1rem',
+    backgroundColor: theme.palette.common.orange,
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light
     }
   }
 }));
@@ -104,7 +119,7 @@ const Contact = (props) => {
             </Typography>
           </Grid>
         </Grid>
-        <Grid item container>
+        <Grid item container style={{maxWidth: '20em'}}>
           <Grid item>
             <TextField
               label='Name'
@@ -130,8 +145,10 @@ const Contact = (props) => {
             />
           </Grid>
         </Grid>
-        <Grid item>
+        <Grid item style={{maxWidth: '20em'}}>
           <TextField
+          InputProps={{disableUnderline: true}}
+          className={classes.message}
             value={message}
             id='message'
             multiline
@@ -140,9 +157,9 @@ const Contact = (props) => {
           />
         </Grid>
         <Grid item>
-          <Button variant='contained'>
+          <Button variant='contained' className={classes.sendButton}>
             Send Message
-            <img src={airplane} alt='paper airplane' />
+            <img src={airplane} alt='paper airplane'style={{marginLeft: '1em'}} />
           </Button>
         </Grid>
       </Grid>
