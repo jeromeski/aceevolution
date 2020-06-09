@@ -64,6 +64,11 @@ export default createMuiTheme({
       textTransform: 'none',
       borderRadius: 50,
       fontFamily: 'Roboto'
+    },
+    caption: {
+      fontSize: '1rem',
+      fontWeight: 300,
+      color: arcGrey
     }
   }
 });
