@@ -6,7 +6,9 @@ import {
   Typography,
   useMediaQuery,
   TextField,
-  Button
+  Button,
+  Dialog,
+  DialogContent
 } from '@material-ui/core';
 import background from '../assets/background.jpg';
 import mobileBackground from '../assets/mobileBackground.jpg';
@@ -75,6 +77,8 @@ const Contact = props => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
+  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesXS = useMediaQuery(theme.breakpoints.down('xs'));
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -82,6 +86,7 @@ const Contact = props => {
   const [phone, setPhone] = useState('');
   const [phoneHelper, setPhoneHelper] = useState('');
   const [message, setMessage] = useState('');
+  const [open, setOpen] = useState(false);
 
   const onChange = evt => {
     let valid;
@@ -140,7 +145,7 @@ const Contact = props => {
               </Typography>
               <Typography variant='body1'> We're waiting</Typography>
             </Grid>
-            <Grid item container >
+            <Grid item container>
               <Grid item>
                 <img
                   src={phoneIcon}
@@ -236,7 +241,130 @@ const Contact = props => {
               />
             </Grid>
             <Grid item container justify='center' style={{ marginTop: '2em' }}>
-              <Button variant='contained' className={classes.sendButton}>
+              <Grid item>
+                <Button
+                  variant='contained'
+                  className={classes.sendButton}
+                  // disabled={
+                  //   name.length === 0 ||
+                  //   message.length === 0 ||
+                  //   phoneHelper.length !== 0 ||
+                  //   emailHelper.length !== 0 ||
+                  //   email.length === 0 ||
+                  //   phone.length === 0
+                  // }
+                  onClick={() => setOpen(true)}>
+                  Send Message
+                  <img
+                    src={airplane}
+                    alt='paper airplane'
+                    style={{ marginLeft: '1em' }}
+                  />
+                </Button>
+              </Grid>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        PaperProps={{
+          style: {
+            paddingTop: matchesXS ? '1em' : '5em',
+            paddingBottom: matchesXS ? '1em' : '5em',
+            paddingLeft: matchesXS
+              ? 0
+              : matchesSM
+              ? '5em'
+              : matchesMD
+              ? '10em'
+              : '20em',
+            paddingRight: matchesXS
+              ? 0
+              : matchesSM
+              ? '5em'
+              : matchesMD
+              ? '10em'
+              : '20em'
+          }
+        }}>
+        <DialogContent>
+          <Grid container direction='column'>
+            <Grid item>
+              <Typography align='center' variant='h4' gutterBottom>
+                Confirm Message
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              container
+              direction='column'
+              style={{ maxWidth: '20em' }}>
+              <Grid item style={{ marginBottom: '0.5em' }}>
+                <TextField
+                  fullWidth
+                  label='Name'
+                  id='name'
+                  value={name}
+                  onChange={evt => setName(evt.target.value)}
+                />
+              </Grid>
+              <Grid item style={{ marginBottom: '0.5em' }}>
+                <TextField
+                  fullWidth
+                  label='Email'
+                  helperText={emailHelper}
+                  error={emailHelper.length !== 0}
+                  id='email'
+                  value={email}
+                  onChange={onChange}
+                />
+              </Grid>
+              <Grid item style={{ marginBottom: '0.5em' }}>
+                <TextField
+                  fullWidth
+                  label='Phone'
+                  helperText={phoneHelper}
+                  error={phoneHelper.length !== 0}
+                  id='phone'
+                  value={phone}
+                  onChange={onChange}
+                />
+              </Grid>
+            </Grid>
+            <Grid item style={{ maxWidth: '20em' }}>
+              <TextField
+                fullWidth
+                InputProps={{ disableUnderline: true }}
+                className={classes.message}
+                value={message}
+                id='message'
+                multiline
+                rows={10}
+                onChange={evt => setMessage(evt.target.value)}
+              />
+            </Grid>
+          </Grid>
+          <Grid item container style={{ marginTop: '2em' }} alignItems='center'>
+            <Grid item>
+              <Button color='primary' onClick={() => setOpen(false)}>
+                Cancel
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                variant='contained'
+                className={classes.sendButton}
+                // disabled={
+                //   name.length === 0 ||
+                //   message.length === 0 ||
+                //   phoneHelper.length !== 0 ||
+                //   emailHelper.length !== 0 ||
+                //   email.length === 0 ||
+                //   phone.length === 0
+                // }
+                onClick={() => setOpen(true)}>
                 Send Message
                 <img
                   src={airplane}
@@ -246,9 +374,8 @@ const Contact = props => {
               </Button>
             </Grid>
           </Grid>
-        </Grid>
-      </Grid>
-
+        </DialogContent>
+      </Dialog>
       <Grid
         item
         container
@@ -278,14 +405,6 @@ const Contact = props => {
             </Typography>
             <Grid container justify={matchesMD ? 'center' : undefined} item>
               <Button
-                disabled={
-                  name.length === 0 ||
-                  message.length === 0 ||
-                  phoneHelper.length !== 0 ||
-                  emailHelper.length !== 0 ||
-                  email.length === 0 ||
-                  phone.length === 0
-                }
                 onClick={() => props.setValue(2)}
                 component={Link}
                 to='/revolution'
