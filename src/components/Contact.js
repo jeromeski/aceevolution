@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
   Grid,
@@ -126,6 +127,13 @@ const Contact = props => {
     }
   };
 
+  const onConfirm = () => {
+    axios
+      .get('https://us-central1-material-ui-course-2a169.cloudfunctions.net/sendMail')
+      .then(res => console.log(res))
+      .catch(err => console.log(err))
+  }
+
   return (
     <Grid container direction='row'>
       <Grid
@@ -249,14 +257,14 @@ const Contact = props => {
                 <Button
                   variant='contained'
                   className={classes.sendButton}
-                  // disabled={
-                  //   name.length === 0 ||
-                  //   message.length === 0 ||
-                  //   phoneHelper.length !== 0 ||
-                  //   emailHelper.length !== 0 ||
-                  //   email.length === 0 ||
-                  //   phone.length === 0
-                  // }
+                  disabled={
+                    name.length === 0 ||
+                    message.length === 0 ||
+                    phoneHelper.length !== 0 ||
+                    emailHelper.length !== 0 ||
+                    email.length === 0 ||
+                    phone.length === 0
+                  }
                   onClick={() => setOpen(true)}>
                   Send Message
                   <img
@@ -367,15 +375,15 @@ const Contact = props => {
               <Button
                 variant='contained'
                 className={classes.sendButton}
-                // disabled={
-                //   name.length === 0 ||
-                //   message.length === 0 ||
-                //   phoneHelper.length !== 0 ||
-                //   emailHelper.length !== 0 ||
-                //   email.length === 0 ||
-                //   phone.length === 0
-                // }
-                onClick={() => setOpen(true)}>
+                disabled={
+                  name.length === 0 ||
+                  message.length === 0 ||
+                  phoneHelper.length !== 0 ||
+                  emailHelper.length !== 0 ||
+                  email.length === 0 ||
+                  phone.length === 0
+                }
+                onClick={onConfirm}>
                 Send Message
                 <img
                   src={airplane}
