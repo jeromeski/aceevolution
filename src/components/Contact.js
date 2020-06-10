@@ -133,14 +133,14 @@ const Contact = props => {
         justify='center'>
         <Grid item>
           <Grid container direction='column'>
-            <Grid item>
+            <Grid item style={{ marginBottom: '2em' }}>
               <Typography variant='h2' style={{ lineHeight: 1 }}>
                 {' '}
                 Contact Us
               </Typography>
               <Typography variant='body1'> We're waiting</Typography>
             </Grid>
-            <Grid item container style={{ marginBottom: '2em' }}>
+            <Grid item container >
               <Grid item>
                 <img
                   src={phoneIcon}
@@ -155,7 +155,11 @@ const Contact = props => {
                     color: theme.palette.common.blue,
                     fontSize: '1rem'
                   }}>
-                  (555)888-9999
+                  <a
+                    href='tel:555555555'
+                    style={{ textDecoration: 'none', color: 'inherit' }}>
+                    (555) 555-5555
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
@@ -174,7 +178,11 @@ const Contact = props => {
                     color: theme.palette.common.blue,
                     fontSize: '1rem'
                   }}>
-                  Zachary@email.com
+                  <a
+                    href='mailto:zachary@gmail.com'
+                    style={{ textDecoration: 'none', color: 'inherit' }}>
+                    zachary@gmail.com
+                  </a>
                 </Typography>
               </Grid>
             </Grid>
@@ -270,6 +278,14 @@ const Contact = props => {
             </Typography>
             <Grid container justify={matchesMD ? 'center' : undefined} item>
               <Button
+                disabled={
+                  name.length === 0 ||
+                  message.length === 0 ||
+                  phoneHelper.length !== 0 ||
+                  emailHelper.length !== 0 ||
+                  email.length === 0 ||
+                  phone.length === 0
+                }
                 onClick={() => props.setValue(2)}
                 component={Link}
                 to='/revolution'
