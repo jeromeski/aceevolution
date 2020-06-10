@@ -9,6 +9,7 @@ import {
   Button
 } from '@material-ui/core';
 import background from '../assets/background.jpg';
+import mobileBackground from '../assets/mobileBackground.jpg';
 import phoneIcon from '../assets/phone.svg';
 import emailIcon from '../assets/email.svg';
 import airplane from '../assets/send.svg';
@@ -20,7 +21,11 @@ const useStyles = makeStyles(theme => ({
     backgroundPosition: 'center',
     backgroundSize: ' cover',
     backgroundRepeat: 'no-repeat',
-    height: '60em'
+    height: '60em',
+    paddingBottom: '10em',
+    [theme.breakpoints.down('md')]: {
+      backgroundImage: `url(${mobileBackground})`
+    }
   },
   estimateButton: {
     ...theme.typography.estimate,
@@ -33,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       backgroundColor: theme.palette.secondary.light
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginRight: 0,
       marginLeft: 0
     }
@@ -44,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     height: 35,
     padding: 5,
     width: 100,
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       marginBottom: '2em'
     }
   },
@@ -69,7 +74,7 @@ const useStyles = makeStyles(theme => ({
 const Contact = props => {
   const classes = useStyles();
   const theme = useTheme();
-  const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesMD = useMediaQuery(theme.breakpoints.down('md'));
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -78,7 +83,15 @@ const Contact = props => {
 
   return (
     <Grid container direction='row'>
-      <Grid item container direction='column' lg={3} alignItems='center' justify='center'>
+      <Grid
+        item
+        container
+        direction='column'
+        lg={4}
+        xl={3}
+        style={{marginBottom: matchesMD ? '5em' : 0, marginTop: matchesMD ? '5em' : 0}}
+        alignItems='center'
+        justify='center'>
         <Grid item>
           <Grid container direction='column'>
             <Grid item>
@@ -86,14 +99,9 @@ const Contact = props => {
                 {' '}
                 Contact Us
               </Typography>
-              <Typography
-                variant='body1'
-               >
-                {' '}
-                We're waiting
-              </Typography>
+              <Typography variant='body1'> We're waiting</Typography>
             </Grid>
-            <Grid item container style={{marginBottom: '2em'}}>
+            <Grid item container style={{ marginBottom: '2em' }}>
               <Grid item>
                 <img
                   src={phoneIcon}
@@ -112,7 +120,7 @@ const Contact = props => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item container style={{marginBottom: '2em'}}>
+            <Grid item container style={{ marginBottom: '2em' }}>
               <Grid item>
                 <img
                   src={emailIcon}
@@ -131,9 +139,14 @@ const Contact = props => {
                 </Typography>
               </Grid>
             </Grid>
-            <Grid item container style={{ maxWidth: '20em' }}>
-              <Grid item>
+            <Grid
+              item
+              container
+              direction='column'
+              style={{ maxWidth: '20em' }}>
+              <Grid item style={{marginBottom: '0.5em'}}>
                 <TextField
+                  fullWidth
                   label='Name'
                   id='name'
                   value={name}
@@ -142,6 +155,7 @@ const Contact = props => {
               </Grid>
               <Grid item>
                 <TextField
+                  fullWidth
                   label='Email'
                   id='email'
                   value={email}
@@ -150,6 +164,7 @@ const Contact = props => {
               </Grid>
               <Grid>
                 <TextField
+                  fullWidth
                   label='Phone'
                   id='phone'
                   value={phone}
@@ -159,6 +174,7 @@ const Contact = props => {
             </Grid>
             <Grid item style={{ maxWidth: '20em' }}>
               <TextField
+                fullWidth
                 InputProps={{ disableUnderline: true }}
                 className={classes.message}
                 value={message}
@@ -168,7 +184,7 @@ const Contact = props => {
                 onChange={evt => setMessage(evt.target.value)}
               />
             </Grid>
-            <Grid item container justify='center' style={{marginTop: '2em'}}>
+            <Grid item container justify='center' style={{ marginTop: '2em' }}>
               <Button variant='contained' className={classes.sendButton}>
                 Send Message
                 <img
@@ -185,25 +201,31 @@ const Contact = props => {
       <Grid
         item
         container
+        direction={matchesMD ? 'column' : 'row'}
         className={classes.background}
         alignItems='center'
-        lg={9}>
+        justify={matchesMD ? 'center' : undefined }
+        lg={8}
+        xl={9}>
         <Grid
           item
           style={{
-            marginLeft: matchesSM ? 0 : '3em',
-            textAlign: matchesSM ? 'center' : 'inherit'
+            marginLeft: matchesMD ? 0 : '3em',
+            textAlign: matchesMD ? 'center' : 'inherit'
           }}>
           <Grid container direction='column'>
-            <Typography variant='h2'>
+            <Typography variant='h2' align={matchesMD ? 'center' : undefined}>
               Simple Software.
               <br />
               Revolutionary Results.
             </Typography>
-            <Typography variant='subtitle2' style={{ fontSize: '1.5rem' }}>
+            <Typography
+              align={matchesMD ? 'center' : undefined}
+              variant='subtitle2'
+              style={{ fontSize: '1.5rem' }}>
               Take advantage of the 21st Century.
             </Typography>
-            <Grid item>
+            <Grid container justify={matchesMD ? 'center' : undefined} item>
               <Button
                 onClick={() => props.setValue(2)}
                 component={Link}
