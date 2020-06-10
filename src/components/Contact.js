@@ -78,8 +78,44 @@ const Contact = props => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [emailHelper, setEmailHelper] = useState('');
   const [phone, setPhone] = useState('');
+  const [phoneHelper, setPhoneHelper] = useState('');
   const [message, setMessage] = useState('');
+
+  const onChange = evt => {
+    let valid;
+    switch (evt.target.id) {
+      case 'email':
+        setEmail(evt.target.value);
+        valid = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(
+          evt.target.value
+        );
+
+        if (!valid) {
+          setEmailHelper('Invalid email');
+        } else {
+          setEmailHelper('');
+        }
+        break;
+
+      case 'phone':
+        setPhone(evt.target.value);
+        valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(
+          evt.target.value
+        );
+        if (!valid) {
+          setPhoneHelper('Invalid phone');
+        } else {
+          setPhoneHelper('');
+        }
+
+        break;
+
+      default:
+        break;
+    }
+  };
 
   return (
     <Grid container direction='row'>
@@ -89,7 +125,10 @@ const Contact = props => {
         direction='column'
         lg={4}
         xl={3}
-        style={{marginBottom: matchesMD ? '5em' : 0, marginTop: matchesMD ? '5em' : 0}}
+        style={{
+          marginBottom: matchesMD ? '5em' : 0,
+          marginTop: matchesMD ? '5em' : 0
+        }}
         alignItems='center'
         justify='center'>
         <Grid item>
@@ -144,7 +183,7 @@ const Contact = props => {
               container
               direction='column'
               style={{ maxWidth: '20em' }}>
-              <Grid item style={{marginBottom: '0.5em'}}>
+              <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
                   fullWidth
                   label='Name'
@@ -157,18 +196,22 @@ const Contact = props => {
                 <TextField
                   fullWidth
                   label='Email'
+                  helperText={emailHelper}
+                  error={emailHelper.length !== 0}
                   id='email'
                   value={email}
-                  onChange={evt => setEmail(evt.target.value)}
+                  onChange={onChange}
                 />
               </Grid>
               <Grid>
                 <TextField
                   fullWidth
                   label='Phone'
+                  helperText={phoneHelper}
+                  error={phoneHelper.length !== 0}
                   id='phone'
                   value={phone}
-                  onChange={evt => setPhone(evt.target.value)}
+                  onChange={onChange}
                 />
               </Grid>
             </Grid>
@@ -204,7 +247,7 @@ const Contact = props => {
         direction={matchesMD ? 'column' : 'row'}
         className={classes.background}
         alignItems='center'
-        justify={matchesMD ? 'center' : undefined }
+        justify={matchesMD ? 'center' : undefined}
         lg={8}
         xl={9}>
         <Grid
