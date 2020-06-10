@@ -34,8 +34,8 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.secondary.light
     },
     [theme.breakpoints.down('sm')]: {
-     marginRight: 0,
-     marginLeft: 0 
+      marginRight: 0,
+      marginLeft: 0
     }
   },
   learnButton: {
@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   message: {
     border: `2px solid ${theme.palette.common.blue}`,
     marginTop: '5em',
-    borderRadius: 5,
+    borderRadius: 5
   },
   sendButton: {
     ...theme.typography.estimate,
@@ -66,7 +66,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Contact = (props) => {
+const Contact = props => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down('sm'));
@@ -78,97 +78,120 @@ const Contact = (props) => {
 
   return (
     <Grid container direction='row'>
-      <Grid item container direction='column' lg={3} justify='center'>
+      <Grid item container direction='column' lg={3} alignItems='center' justify='center'>
         <Grid item>
-          <Typography variant='h2' style={{ lineHeight: 1 }}>
-            {' '}
-            Contact Us
-          </Typography>
-          <Typography
-            variant='body1'
-            style={{ color: theme.palette.common.blue }}>
-            {' '}
-            We're waiting
-          </Typography>
-        </Grid>
-        <Grid item container>
-          <Grid item>
-            <img src={phoneIcon} alt='phone' style={{ marginRight: '0.5em' }} />
+          <Grid container direction='column'>
+            <Grid item>
+              <Typography variant='h2' style={{ lineHeight: 1 }}>
+                {' '}
+                Contact Us
+              </Typography>
+              <Typography
+                variant='body1'
+               >
+                {' '}
+                We're waiting
+              </Typography>
+            </Grid>
+            <Grid item container style={{marginBottom: '2em'}}>
+              <Grid item>
+                <img
+                  src={phoneIcon}
+                  alt='phone'
+                  style={{ marginRight: '0.5em' }}
+                />
+              </Grid>
+              <Grid item>
+                <Typography
+                  variant='body1'
+                  style={{
+                    color: theme.palette.common.blue,
+                    fontSize: '1rem'
+                  }}>
+                  (555)888-9999
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid item container style={{marginBottom: '2em'}}>
+              <Grid item>
+                <img
+                  src={emailIcon}
+                  alt='envelope'
+                  style={{ marginRight: '0.5em', verticalAlign: 'bottom' }}
+                />
+              </Grid>
+              <Grid item>
+                <Typography
+                  variant='body1'
+                  style={{
+                    color: theme.palette.common.blue,
+                    fontSize: '1rem'
+                  }}>
+                  Zachary@email.com
+                </Typography>
+              </Grid>
+            </Grid>
+            <Grid item container style={{ maxWidth: '20em' }}>
+              <Grid item>
+                <TextField
+                  label='Name'
+                  id='name'
+                  value={name}
+                  onChange={evt => setName(evt.target.value)}
+                />
+              </Grid>
+              <Grid item>
+                <TextField
+                  label='Email'
+                  id='email'
+                  value={email}
+                  onChange={evt => setEmail(evt.target.value)}
+                />
+              </Grid>
+              <Grid>
+                <TextField
+                  label='Phone'
+                  id='phone'
+                  value={phone}
+                  onChange={evt => setPhone(evt.target.value)}
+                />
+              </Grid>
+            </Grid>
+            <Grid item style={{ maxWidth: '20em' }}>
+              <TextField
+                InputProps={{ disableUnderline: true }}
+                className={classes.message}
+                value={message}
+                id='message'
+                multiline
+                rows={10}
+                onChange={evt => setMessage(evt.target.value)}
+              />
+            </Grid>
+            <Grid item container justify='center' style={{marginTop: '2em'}}>
+              <Button variant='contained' className={classes.sendButton}>
+                Send Message
+                <img
+                  src={airplane}
+                  alt='paper airplane'
+                  style={{ marginLeft: '1em' }}
+                />
+              </Button>
+            </Grid>
           </Grid>
-          <Grid item>
-            <Typography
-              variant='body1'
-              style={{ color: theme.palette.common.blue, fontSize: '1rem' }}>
-              (555)888-9999
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid item container>
-          <Grid item>
-            <img
-              src={emailIcon}
-              alt='envelope'
-              style={{ marginRight: '0.5em', verticalAlign: 'bottom' }}
-            />
-          </Grid>
-          <Grid item>
-            <Typography
-              variant='body1'
-              style={{ color: theme.palette.common.blue, fontSize: '1rem' }}>
-              Zachary@email.com
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid item container style={{maxWidth: '20em'}}>
-          <Grid item>
-            <TextField
-              label='Name'
-              id='name'
-              value={name}
-              onChange={evt => setName(evt.target.value)}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              label='Email'
-              id='email'
-              value={email}
-              onChange={evt => setEmail(evt.target.value)}
-            />
-          </Grid>
-          <Grid>
-            <TextField
-              label='Phone'
-              id='phone'
-              value={phone}
-              onChange={evt => setPhone(evt.target.value)}
-            />
-          </Grid>
-        </Grid>
-        <Grid item style={{maxWidth: '20em'}}>
-          <TextField
-          InputProps={{disableUnderline: true}}
-          className={classes.message}
-            value={message}
-            id='message'
-            multiline
-            rows={10}
-            onChange={evt => setMessage(evt.target.value)}
-          />
-        </Grid>
-        <Grid item>
-          <Button variant='contained' className={classes.sendButton}>
-            Send Message
-            <img src={airplane} alt='paper airplane'style={{marginLeft: '1em'}} />
-          </Button>
         </Grid>
       </Grid>
 
-      <Grid item container className={classes.background} alignItems='center' lg={9}>
+      <Grid
+        item
+        container
+        className={classes.background}
+        alignItems='center'
+        lg={9}>
         <Grid
           item
           style={{
-            marginLeft: matchesSM ? 0 : '5em',
+            marginLeft: matchesSM ? 0 : '3em',
             textAlign: matchesSM ? 'center' : 'inherit'
           }}>
           <Grid container direction='column'>
