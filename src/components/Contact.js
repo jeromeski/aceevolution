@@ -10,8 +10,9 @@ import {
   Button,
   Dialog,
   DialogContent,
-  CircularProgress
+  CircularProgress,
 } from '@material-ui/core';
+import Snackbar from '@material-ui/core/Snackbar'
 import background from '../assets/background.jpg';
 import mobileBackground from '../assets/mobileBackground.jpg';
 import phoneIcon from '../assets/phone.svg';
@@ -94,6 +95,7 @@ const Contact = props => {
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [alert, setAlert] = useState({open: false, message: '', backgroundColor: '' })
 
   const onChange = evt => {
     let valid;
@@ -142,9 +144,10 @@ const Contact = props => {
         setEmail('');
         setPhone('');
         setMessage('');
+        setAlert({open: true, message: 'Message sent successfully!', backgroundColor: '#4BB543'})
       })
       .catch(err => {
-        setLoading(false);
+        setLoading(false); setAlert({open: true, message: 'Something went wrong, please try again!', backgroundColor: '#FF3232'});
       });
   };
 
@@ -470,6 +473,7 @@ const Contact = props => {
           </Button>
         </Grid>
       </Grid>
+      <Snackbar open={alert.open} message={alert.message} ContentProps={{style: {backgroundColor: alert.backgroundColor}}} anchorOrigin={{vertical: "top", horizontal: "center"}} onClose={() => setAlert({...alert, open: false})} autoHideDuration={4000} />
     </Grid>
   );
 };
