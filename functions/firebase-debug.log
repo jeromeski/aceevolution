@@ -1,0 +1,60 @@
+[debug] [2020-06-11T01:42:53.136Z] ----------------------------------------------------------------------
+[debug] [2020-06-11T01:42:53.139Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js functions:shell
+[debug] [2020-06-11T01:42:53.139Z] CLI Version:   8.4.2
+[debug] [2020-06-11T01:42:53.139Z] Platform:      win32
+[debug] [2020-06-11T01:42:53.139Z] Node Version:  v14.2.0
+[debug] [2020-06-11T01:42:53.141Z] Time:          Thu Jun 11 2020 09:42:53 GMT+0800 (China Standard Time)
+[debug] [2020-06-11T01:42:53.141Z] ----------------------------------------------------------------------
+[debug] [2020-06-11T01:42:53.141Z] 
+[debug] [2020-06-11T01:42:53.153Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-06-11T01:42:53.154Z] > authorizing via signed-in user
+[debug] [2020-06-11T01:42:53.154Z] [iam] checking project material-ui-course-2a169 for permissions ["firebase.projects.get"]
+[debug] [2020-06-11T01:42:53.158Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-06-11T01:42:53.158Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-06-11T01:42:53.440Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 11 Jun 2020 01:42:56 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-06-11T01:42:53.473Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/material-ui-course-2a169:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-06-11T01:42:54.630Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 11 Jun 2020 01:42:57 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=818","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[warn] !  Your requested "node" version "8" doesn't match your global version "14" {"metadata":{"emulator":{"name":"functions"},"message":"Your requested \"node\" version \"8\" doesn't match your global version \"14\""}}
+[debug] [2020-06-11T01:42:55.676Z] [functions] Watching "C:\Users\Jeromeski\Desktop\CRA-TUT-PROJECTS\aceevolution\functions" for Cloud Functions...
+[debug] [2020-06-11T01:42:55.753Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-06-11T01:42:55.753Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-06-11T01:42:55.753Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2020-06-11T01:42:55.754Z] DEBUG: [worker-~diagnostic~-38f03159-e585-4b40-b20f-eec21b751a58]: Assigning socketPath: \\?\pipe\C:\Users\Jeromeski\Desktop\CRA-TUT-PROJECTS\aceevolution\functions\7160
+[debug] [2020-06-11T01:42:55.754Z] DEBUG: [worker-~diagnostic~-38f03159-e585-4b40-b20f-eec21b751a58]: BUSY
+[debug] [2020-06-11T01:42:56.504Z] DEBUG: [runtime-status] [7160] Functions runtime initialized. {"cwd":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions","node_version":"14.2.0"}
+[debug] [2020-06-11T01:42:56.505Z] DEBUG: [runtime-status] [7160] Disabled runtime features: undefined
+[debug] [2020-06-11T01:42:56.508Z] DEBUG: [runtime-status] [7160] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-06-11T01:42:56.510Z] DEBUG: [runtime-status] [7160] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.7.0","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-06-11T01:42:56.513Z] DEBUG: [runtime-status] [7160] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2020-06-11T01:42:56.514Z] DEBUG: [runtime-status] [7160] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.7.0","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-06-11T01:42:56.576Z] DEBUG: [runtime-status] [7160] Checked functions.config() {"config":{}}
+[debug] [2020-06-11T01:42:56.576Z] DEBUG: [runtime-status] [7160] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.7.0","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-functions\\lib\\index.js"}}
+[debug] [2020-06-11T01:42:56.577Z] DEBUG: [runtime-status] [7160] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.7.0","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-06-11T01:42:56.578Z] DEBUG: [runtime-status] [7160] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-06-11T01:42:56.578Z] DEBUG: [runtime-status] [7160] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.7.0","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-06-11T01:42:56.579Z] DEBUG: [runtime-status] [7160] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2020-06-11T01:42:56.651Z] DEBUG: [runtime-status] [7160] initializeApp(DEFAULT) {"databaseURL":"https://material-ui-course-2a169.firebaseio.com","storageBucket":"material-ui-course-2a169.appspot.com","projectId":"material-ui-course-2a169"}
+[warn] !  It looks like you're trying to access functions.config().user but there is no value there. You can learn more about setting up config here: https://firebase.google.com/docs/functions/local-emulator {"metadata":{"emulator":{"name":"functions"},"message":"It looks like you're trying to access functions.config().user but there is no value there. You can learn more about setting up config here: https://firebase.google.com/docs/functions/local-emulator"}}
+[debug] [2020-06-11T01:42:56.670Z] DEBUG: [runtime-status] [7160] Error in handleMessage: {"frb":{"cwd":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions","projectId":"material-ui-course-2a169","triggerId":"","emulators":{},"socketPath":"\\\\?\\pipe\\C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\7160"},"opts":{"nodeBinary":"C:\\Program Files\\nodejs\\node.exe"}} => Error: Cannot find module './tsconfig.json'
+Require stack:
+- C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js: Error: Cannot find module './tsconfig.json'
+Require stack:
+- C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:1020:15)
+    at Function.resolve (internal/modules/cjs/helpers.js:78:19)
+    at requireAsync (C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:33:44)
+    at C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:566:33
+    at Generator.next (<anonymous>)
+    at C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:4:12)
+    at moduleResolutionDetective (C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:564:12)
+    at C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:653:23
+[warn] !  functions: Cannot find module './tsconfig.json'
+Require stack:
+- C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js {"metadata":{"emulator":{"name":"functions"},"message":"Cannot find module './tsconfig.json'\nRequire stack:\n- C:\\Users\\Jeromeski\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\emulator\\functionsEmulatorRuntime.js"}}
+[warn] !  Your function was killed because it raised an unhandled error. {"metadata":{"emulator":{"name":"functions"},"message":"Your function was killed because it raised an unhandled error."}}
+[debug] [2020-06-11T01:42:56.688Z] DEBUG: [worker-~diagnostic~-38f03159-e585-4b40-b20f-eec21b751a58]: exited
+[debug] [2020-06-11T01:42:56.688Z] DEBUG: [worker-~diagnostic~-38f03159-e585-4b40-b20f-eec21b751a58]: FINISHED

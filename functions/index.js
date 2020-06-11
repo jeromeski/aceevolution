@@ -1,9 +1,9 @@
 const functions = require('firebase-functions');
-const nodemailer = require('nodemailer');
-const admin = require('firebase-admin');
-const config = functions.config();
-const cors = require('cors')({origin: true})
 
+const admin = require('firebase-admin');
+const nodemailer = require('nodemailer');
+const config = functions.config();
+const cors = require('cors')({ origin: true });
 admin.initializeApp();
 
 const transporter = nodemailer.createTransport({
@@ -16,9 +16,9 @@ const transporter = nodemailer.createTransport({
 
 let mailOptions = {
   from: 'Arc Development',
-  to: 'jerprojone@gmail.com',
-  subject: 'Testing nodemailer',
-  text: 'Test successful'
+  to: 'jeruserone@gmail.com',
+  subject: 'Testing Nodemailer',
+  text: 'Test Successful'
 };
 
 // // Create and Deploy Your First Cloud Functions
@@ -30,8 +30,8 @@ exports.sendMail = functions.https.onRequest((request, response) => {
       if (error) {
         response.send(error);
       } else {
-        response.send('Message sent successfully');
+        response.send('Message sent Successfully');
       }
     });
-  })
+  });
 });

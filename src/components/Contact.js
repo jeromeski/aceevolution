@@ -9,7 +9,8 @@ import {
   TextField,
   Button,
   Dialog,
-  DialogContent
+  DialogContent,
+  CircularProgress
 } from '@material-ui/core';
 import background from '../assets/background.jpg';
 import mobileBackground from '../assets/mobileBackground.jpg';
@@ -92,6 +93,7 @@ const Contact = props => {
   const [phoneHelper, setPhoneHelper] = useState('');
   const [message, setMessage] = useState('');
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onChange = evt => {
     let valid;
@@ -128,11 +130,30 @@ const Contact = props => {
   };
 
   const onConfirm = () => {
+    setLoading(true);
     axios
-      .get('https://us-central1-material-ui-course-2a169.cloudfunctions.net/sendMail')
-      .then(res => console.log(res))
-      .catch(err => console.log(err))
-  }
+      .get(
+        'https://us-central1-material-ui-course-2a169.cloudfunctions.net/sendMail'
+      )
+      .then(res => {
+        setLoading(false);
+        setOpen(false);
+        setName('');
+        setEmail('');
+        setPhone('');
+        setMessage('');
+      })
+      .catch(err => {
+        setLoading(false);
+      });
+  };
+
+  const buttonContents = (
+    <React.Fragment>
+      Send Message
+      <img src={airplane} alt='paper airplane' style={{ marginLeft: '1em' }} />
+    </React.Fragment>
+  );
 
   return (
     <Grid container direction='row'>
@@ -384,12 +405,7 @@ const Contact = props => {
                   phone.length === 0
                 }
                 onClick={onConfirm}>
-                Send Message
-                <img
-                  src={airplane}
-                  alt='paper airplane'
-                  style={{ marginLeft: '1em' }}
-                />
+                {loading ? <CircularProgress size={30} /> : buttonContents}
               </Button>
             </Grid>
           </Grid>
