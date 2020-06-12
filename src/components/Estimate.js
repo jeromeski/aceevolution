@@ -1,5 +1,6 @@
 import React from 'react';
-import { cloneDeep} from 'lodash';
+// to maintain an immutable/unchanging state
+import { cloneDeep } from 'lodash';
 import Lottie from 'react-lottie';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Grid, Typography, Button, IconButton } from '@material-ui/core';
@@ -92,33 +93,33 @@ const softwareQuestions = [
   { ...defaultQuestions[0], active: false },
   {
     id: 2,
-    title: "Which platforms do you need supported?",
-    subtitle: "Select all that apply.",
+    title: 'Which platforms do you need supported?',
+    subtitle: 'Select all that apply.',
     options: [
       {
         id: 1,
-        title: "Web Application",
+        title: 'Web Application',
         subtitle: null,
         icon: website,
-        iconAlt: "computer outline",
+        iconAlt: 'computer outline',
         selected: false,
         cost: 100
       },
       {
         id: 2,
-        title: "iOS Application",
+        title: 'iOS Application',
         subtitle: null,
         icon: iphone,
-        iconAlt: "outline of iphone",
+        iconAlt: 'outline of iphone',
         selected: false,
         cost: 100
       },
       {
         id: 3,
-        title: "Android Application",
+        title: 'Android Application',
         subtitle: null,
         icon: android,
-        iconAlt: "outlines of android phone",
+        iconAlt: 'outlines of android phone',
         selected: false,
         cost: 100
       }
@@ -127,33 +128,33 @@ const softwareQuestions = [
   },
   {
     id: 3,
-    title: "Which features do you expect to use?",
-    subtitle: "Select all that apply.",
+    title: 'Which features do you expect to use?',
+    subtitle: 'Select all that apply.',
     options: [
       {
         id: 1,
-        title: "Photo/Video",
+        title: 'Photo/Video',
         subtitle: null,
         icon: camera,
-        iconAlt: "camera outline",
+        iconAlt: 'camera outline',
         selected: false,
         cost: 25
       },
       {
         id: 2,
-        title: "GPS",
+        title: 'GPS',
         subtitle: null,
         icon: gps,
-        iconAlt: "gps pin",
+        iconAlt: 'gps pin',
         selected: false,
         cost: 25
       },
       {
         id: 3,
-        title: "File Transfer",
+        title: 'File Transfer',
         subtitle: null,
         icon: upload,
-        iconAlt: "outline of cloud with arrow pointing up",
+        iconAlt: 'outline of cloud with arrow pointing up',
         selected: false,
         cost: 25
       }
@@ -162,33 +163,33 @@ const softwareQuestions = [
   },
   {
     id: 4,
-    title: "Which features do you expect to use?",
-    subtitle: "Select all that apply.",
+    title: 'Which features do you expect to use?',
+    subtitle: 'Select all that apply.',
     options: [
       {
         id: 1,
-        title: "Users/Authentication",
+        title: 'Users/Authentication',
         subtitle: null,
         icon: users,
-        iconAlt: "outline of a person with a plus sign",
+        iconAlt: 'outline of a person with a plus sign',
         selected: false,
         cost: 25
       },
       {
         id: 2,
-        title: "Biometrics",
+        title: 'Biometrics',
         subtitle: null,
         icon: biometrics,
-        iconAlt: "fingerprint",
+        iconAlt: 'fingerprint',
         selected: false,
         cost: 25
       },
       {
         id: 3,
-        title: "Push Notifications",
+        title: 'Push Notifications',
         subtitle: null,
         icon: bell,
-        iconAlt: "outline of a bell",
+        iconAlt: 'outline of a bell',
         selected: false,
         cost: 25
       }
@@ -197,13 +198,13 @@ const softwareQuestions = [
   },
   {
     id: 5,
-    title: "What type of custom features do you expect to need?",
-    subtitle: "Select one.",
+    title: 'What type of custom features do you expect to need?',
+    subtitle: 'Select one.',
     options: [
       {
         id: 1,
-        title: "Low Complexity",
-        subtitle: "(Informational)",
+        title: 'Low Complexity',
+        subtitle: '(Informational)',
         icon: info,
         iconAlt: "'i' inside a circle",
         selected: false,
@@ -211,19 +212,19 @@ const softwareQuestions = [
       },
       {
         id: 2,
-        title: "Medium Complexity",
-        subtitle: "(Interactive, Customizable, Realtime)",
+        title: 'Medium Complexity',
+        subtitle: '(Interactive, Customizable, Realtime)',
         icon: customized,
-        iconAlt: "two toggle switches",
+        iconAlt: 'two toggle switches',
         selected: false,
         cost: 50
       },
       {
         id: 3,
-        title: "High Complexity",
-        subtitle: "(Data Modeling and Computation)",
+        title: 'High Complexity',
+        subtitle: '(Data Modeling and Computation)',
         icon: data,
-        iconAlt: "outline of line graph",
+        iconAlt: 'outline of line graph',
         selected: false,
         cost: 100
       }
@@ -232,33 +233,33 @@ const softwareQuestions = [
   },
   {
     id: 6,
-    title: "How many users do you expect?",
-    subtitle: "Select one.",
+    title: 'How many users do you expect?',
+    subtitle: 'Select one.',
     options: [
       {
         id: 1,
-        title: "0-10",
+        title: '0-10',
         subtitle: null,
         icon: person,
-        iconAlt: "person outline",
+        iconAlt: 'person outline',
         selected: false,
         cost: 1
       },
       {
         id: 2,
-        title: "10-100",
+        title: '10-100',
         subtitle: null,
         icon: persons,
-        iconAlt: "outline of two people",
+        iconAlt: 'outline of two people',
         selected: false,
         cost: 1.25
       },
       {
         id: 3,
-        title: "100+",
+        title: '100+',
         subtitle: null,
         icon: people,
-        iconAlt: "outline of three people",
+        iconAlt: 'outline of three people',
         selected: false,
         cost: 1.5
       }
@@ -267,38 +268,37 @@ const softwareQuestions = [
   }
 ];
 
-
 const websiteQuestions = [
   { ...defaultQuestions[0], active: false },
   {
     id: 2,
-    title: "Which type of website are you wanting?",
-    subtitle: "Select one.",
+    title: 'Which type of website are you wanting?',
+    subtitle: 'Select one.',
     options: [
       {
         id: 1,
-        title: "Basic",
-        subtitle: "(Informational)",
+        title: 'Basic',
+        subtitle: '(Informational)',
         icon: info,
-        iconAlt: "person outline",
+        iconAlt: 'person outline',
         selected: false,
         cost: 100
       },
       {
         id: 2,
-        title: "Interactive",
+        title: 'Interactive',
         subtitle: "(Users, API's, Messaging)",
         icon: customized,
-        iconAlt: "outline of two people",
+        iconAlt: 'outline of two people',
         selected: false,
         cost: 200
       },
       {
         id: 3,
-        title: "E-Commerce",
-        subtitle: "(Sales)",
+        title: 'E-Commerce',
+        subtitle: '(Sales)',
         icon: globe,
-        iconAlt: "outline of three people",
+        iconAlt: 'outline of three people',
         selected: false,
         cost: 250
       }
@@ -311,7 +311,7 @@ const Estimate = () => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const [ questions, setQuestions ] = useState(softwareQuestions)
+  const [questions, setQuestions] = useState(softwareQuestions);
 
   const defaultOptions = {
     loop: true,
@@ -323,45 +323,65 @@ const Estimate = () => {
   };
 
   const nextQuestion = () => {
+    // make a copy of the state
     const newQuestions = cloneDeep(questions);
-    const currentlyActive = newQuestions.filter(question => question.active)
+    // pull out the question we are currently on
+    const currentlyActive = newQuestions.filter(question => question.active);
+    // pull out the index in the array
     const activeIndex = currentlyActive[0].id - 1;
+    // assign the correct index for the next question
     const nextIndex = activeIndex + 1;
-    
-    newQuestions[activeIndex] = {... currentlyActive[0], active: false};
-    newQuestions[nextIndex] = {...newQuestions[nextIndex], active: true};
-    setQuestions(newQuestions)
-  }
+    // set the new question - change the state
+    // spread out all the properties just like in redux, change the specific property
+    /*changing the active property to now false then taking this new version of that question and overwriting it inside of the overall questions array so that we can then later push this new version of the array off to our state */
+
+    newQuestions[activeIndex] = { ...currentlyActive[0], active: false };
+    newQuestions[nextIndex] = { ...newQuestions[nextIndex], active: true };
+    setQuestions(newQuestions);
+  };
 
   const previousQuestion = () => {
     const newQuestions = cloneDeep(questions);
-    const currentlyActive = newQuestions.filter(question => question.active)
+    const currentlyActive = newQuestions.filter(question => question.active);
     const activeIndex = currentlyActive[0].id - 1;
     const nextIndex = activeIndex - 1;
-    
-    newQuestions[activeIndex] = {... currentlyActive[0], active: false};
-    newQuestions[nextIndex] = {...newQuestions[nextIndex], active: true};
-    setQuestions(newQuestions)
-  }
+
+    newQuestions[activeIndex] = { ...currentlyActive[0], active: false };
+    newQuestions[nextIndex] = { ...newQuestions[nextIndex], active: true };
+    setQuestions(newQuestions);
+  };
 
   const navigationPreviousDisabled = () => {
-    const currentlyActive = questions.filter(question => question.active)
+    const currentlyActive = questions.filter(question => question.active);
     if (currentlyActive[0].id === 1) {
       return true;
     } else {
       return false;
     }
-  }
+  };
 
   const navigationNextDisabled = () => {
-    const currentlyActive = questions.filter(question => question.active)
+    const currentlyActive = questions.filter(question => question.active);
     if (currentlyActive[0].id === questions[questions.length - 1].id) {
       return true;
     } else {
       return false;
     }
-  }
+  };
 
+  const handleSelect = id => {
+    const newQuestions = cloneDeep(questions);
+    // pull out currently active question
+    const currentlyActive = questions.filter(question => question.active);
+    // get the index of that question
+    const activeIndex = currentlyActive[0].id - 1;
+    // finding the item that we have just selected
+    const newSelected = newQuestions[activeIndex].options[id - 1];
+    // find the newly selected property and toggle it
+    newSelected.selected = !newSelected.selected;
+
+    setQuestions(newQuestions);
+  };
 
   return (
     <Grid container direction='row'>
@@ -397,7 +417,8 @@ const Estimate = () => {
                   style={{
                     fontSize: '2.25rem',
                     fontWeight: 500,
-                    marginTop: '5em'
+                    marginTop: '5em',
+                    lineHeight: 1.25
                   }}>
                   {question.title}
                 </Typography>
@@ -412,26 +433,36 @@ const Estimate = () => {
                 </Typography>
               </Grid>
               <Grid item container>
-              {question.options.map(option => (
-                <Grid item container direction='column' md>
-                  <Grid item style={{ maxWidth: '12em' }}>
-                    <Typography
-                      variant='h6'
-                      align='center'
-                      style={{ marginBottom: '1em' }}>
-                      {option.title}
-                    </Typography>
-                    <Typography variant='caption' align='center'>{option.subtitle}</Typography>
+                {question.options.map(option => (
+                  <Grid
+                    item
+                    container
+                    direction='column'
+                    md
+                    component={Button}
+                    style={{ borderRadius: 0, display: 'grid', textTransform: 'none', backgroundColor: option.selected ? theme.palette.common.orange : null }}
+                    onClick={() => handleSelect(option.id)}
+                    >
+                    <Grid item style={{ maxWidth: '14em' }}>
+                      <Typography
+                        variant='h6'
+                        align='center'
+                        style={{ marginBottom: '1em' }}>
+                        {option.title}
+                      </Typography>
+                      <Typography variant='caption' align='center'>
+                        {option.subtitle}
+                      </Typography>
+                    </Grid>
+                    <Grid item>
+                      <img
+                        src={option.icon}
+                        alt={option.iconAlt}
+                        className={classes.icon}
+                      />
+                    </Grid>
                   </Grid>
-                  <Grid item>
-                    <img
-                      src={option.icon}
-                      alt={option.iconAlt}
-                      className={classes.icon}
-                    />
-                  </Grid>
-                </Grid>
-              ))}
+                ))}
               </Grid>
             </React.Fragment>
           ))}
@@ -442,13 +473,27 @@ const Estimate = () => {
           justify='space-between'
           style={{ width: '18em', marginTop: '3em' }}>
           <Grid item>
-            <IconButton disabled={navigationPreviousDisabled()} onClick={previousQuestion}>
-            <img src={navigationPreviousDisabled() ? backArrowDisabled : backArrow} alt='Previous question' />
+            <IconButton
+              disabled={navigationPreviousDisabled()}
+              onClick={previousQuestion}>
+              <img
+                src={
+                  navigationPreviousDisabled() ? backArrowDisabled : backArrow
+                }
+                alt='Previous question'
+              />
             </IconButton>
           </Grid>
           <Grid item>
-            <IconButton disabled={navigationNextDisabled()} onClick={nextQuestion}>
-            <img src={navigationNextDisabled() ? forwardArrowDisabled : forwardArrow} alt='Next question' />
+            <IconButton
+              disabled={navigationNextDisabled()}
+              onClick={nextQuestion}>
+              <img
+                src={
+                  navigationNextDisabled() ? forwardArrowDisabled : forwardArrow
+                }
+                alt='Next question'
+              />
             </IconButton>
           </Grid>
           <Grid item>
