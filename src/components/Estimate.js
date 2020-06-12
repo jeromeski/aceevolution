@@ -30,7 +30,24 @@ import biometrics from '../assets/biometrics.svg';
 
 import estimateAnimation from '../animations/estimateAnimation/data.json';
 
-const useStyles = makeStyles(theme => {});
+const useStyles = makeStyles(theme => ({
+  icon: {
+    width: '12em',
+    height: '10em'
+  },
+  estimateButton: {
+    ...theme.typography.estimate,
+    borderRadius: 50,
+    backgroundColor: theme.palette.common.orange,
+    height: 50,
+    width: 225,
+    fontSize: '1.25rem',
+    marginTop: '5em',
+    '&:hover': {
+      backgroundColor: theme.palette.secondary.light
+    }
+  }
+}));
 
 const Estimate = () => {
   const classes = useStyles();
@@ -47,59 +64,109 @@ const Estimate = () => {
 
   return (
     <Grid container direction='row'>
-      <Grid item container direction='column'>
-        <Grid item>
+      <Grid item container direction='column' lg wrap='nowrap'>
+        <Grid item style={{ marginTop: '2em', marginLeft: '5em' }}>
           <Typography variant='h2'>Estimate</Typography>
         </Grid>
-        <Grid item>
+        <Grid item style={{ marginRight: '10em', maxWidth: '50em' }}>
           <Lottie
             options={defaultOptions}
             isStopped
             height='100%'
             width='100%'
+            style={{ marginTop: '5em' }}
           />
         </Grid>
       </Grid>
-      <Grid item container direction='column'>
+      <Grid
+        item
+        container
+        direction='column'
+        lg
+        style={{ marginRight: '2em', marginBottom: '25em' }}
+        alignItems='center'>
         <Grid item>
           <Typography
             variant='h2'
             align='center'
-            style={{ fontWeight: 300 }}
+            style={{
+              fontSize: '2.25rem',
+              fontWeight: 500,
+              marginBottom: '2.5em',
+              marginTop: '5em'
+            }}
             gutterBottom>
             Which service are you interested in?
           </Typography>
         </Grid>
         <Grid item container>
-          <Grid item container direction='column'>
-            <Grid item style={{maxWidth: '12em'}}>
-              <Typography variant='h6' align='center'>
+          <Grid item container direction='column' md>
+            <Grid item style={{ maxWidth: '12em' }}>
+              <Typography
+                variant='h6'
+                align='center'
+                style={{ marginBottom: '1em' }}>
                 Custom Software Development
               </Typography>
             </Grid>
             <Grid item>
-             <img src={software} alt='three floating screen' />
+              <img
+                src={software}
+                alt='three floating screen'
+                className={classes.icon}
+              />
             </Grid>
           </Grid>
-          <Grid item container direction='column'>
-            <Grid item style={{maxWidth: '12em'}}>
-              <Typography variant='h6' align='center'>
+          <Grid item container direction='column' md>
+            <Grid item style={{ maxWidth: '12em' }}>
+              <Typography
+                variant='h6'
+                align='center'
+                style={{ marginBottom: '1em' }}>
                 iOS/Android App Development
               </Typography>
             </Grid>
             <Grid item>
-             <img src={mobile} alt='phones and tablet outlines' />
+              <img
+                src={mobile}
+                alt='phones and tablet outlines'
+                className={classes.icon}
+              />
             </Grid>
           </Grid>
-          <Grid item container direction='column'>
-            <Grid item style={{maxWidth: '12em'}}>
-              <Typography variant='h6' align='center'>
+          <Grid item container direction='column' md>
+            <Grid item style={{ maxWidth: '12em' }}>
+              <Typography
+                variant='h6'
+                align='center'
+                style={{ marginBottom: '1em' }}>
                 Website Development
               </Typography>
             </Grid>
             <Grid item>
-             <img src={website} alt='computer outline' />
+              <img
+                src={website}
+                alt='computer outline'
+                className={classes.icon}
+              />
             </Grid>
+          </Grid>
+        </Grid>
+        <Grid
+          item
+          container
+          justify='space-between'
+          style={{ width: '15em', marginTop: '3em' }}>
+          <Grid item>
+            <img src={backArrow} alt='Previous question' />
+          </Grid>
+          <Grid item>
+            <img src={forwardArrow} alt='Next question' />
+          </Grid>
+          <Grid item>
+            <Button variant='container' className={classes.estimateButton}>
+            Get Estimate
+            </Button>
           </Grid>
         </Grid>
       </Grid>
