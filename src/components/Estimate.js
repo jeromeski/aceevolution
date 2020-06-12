@@ -30,6 +30,7 @@ import globe from '../assets/globe.svg';
 import biometrics from '../assets/biometrics.svg';
 
 import estimateAnimation from '../animations/estimateAnimation/data.json';
+import { useState } from 'react';
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -306,10 +307,11 @@ const websiteQuestions = [
   }
 ];
 
-
 const Estimate = () => {
   const classes = useStyles();
   const theme = useTheme();
+
+  const [ questions, setQuestions ] = useState(softwareQuestions)
 
   const defaultOptions = {
     loop: true,
@@ -319,6 +321,29 @@ const Estimate = () => {
       preserveAspectRation: 'xMidYMid slice'
     }
   };
+
+  const nextQuestion = () => {
+    const newQuestions = cloneDeep(questions);
+    const currentlyActive = newQuestions.filter(question => question.active)
+    const activeIndex = currentlyActive[0].id - 1;
+    const nextIndex = activeIndex + 1;
+    
+    newQuestions[activeIndex] = {... currentlyActive[0], active: false};
+    newQuestions[nextIndex] = {...newQuestions[nextIndex], active: true};
+    setQuestions(newQuestions)
+  }
+
+  const previousQuestion = () => {
+    const newQuestions = cloneDeep(questions);
+    const currentlyActive = newQuestions.filter(question => question.active)
+    const activeIndex = currentlyActive[0].id - 1;
+    const nextIndex = activeIndex - 1;
+    
+    newQuestions[activeIndex] = {... currentlyActive[0], active: false};
+    newQuestions[nextIndex] = {...newQuestions[nextIndex], active: true};
+    setQuestions(newQuestions)
+  }
+
 
   return (
     <Grid container direction='row'>
@@ -343,7 +368,7 @@ const Estimate = () => {
         lg
         style={{ marginRight: '2em', marginBottom: '25em' }}
         alignItems='center'>
-        {defaultQuestions
+        {questions
           .filter(question => question.active)
           .map((question, index) => (
             <React.Fragment key={index}>
@@ -397,12 +422,16 @@ const Estimate = () => {
           item
           container
           justify='space-between'
-          style={{ width: '15em', marginTop: '3em' }}>
+          style={{ width: '18em', marginTop: '3em' }}>
           <Grid item>
+            <IconButton onClick={previousQuestion}>
             <img src={backArrow} alt='Previous question' />
+            </IconButton>
           </Grid>
           <Grid item>
+            <IconButton onClick={nextQuestion}>
             <img src={forwardArrow} alt='Next question' />
+            </IconButton>
           </Grid>
           <Grid item>
             <Button variant='container' className={classes.estimateButton}>
