@@ -1,6 +1,7 @@
 import React from 'react';
 // to maintain an immutable/unchanging state
 import { cloneDeep } from 'lodash';
+import { v4 as uuidv4 } from 'uuid';
 import Lottie from 'react-lottie';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Grid, Typography, Button, IconButton } from '@material-ui/core';
@@ -77,11 +78,11 @@ const defaultQuestions = [
         cost: 0
       },
       {
-        id: 1,
-        title: 'Custom Software Development',
+        id: 3,
+        title: 'Website Development',
         subtitle: null,
-        icon: software,
-        iconAlt: 'three floating screens',
+        icon: website,
+        iconAlt: 'computer outline',
         selected: false,
         cost: 0
       }
@@ -311,7 +312,8 @@ const Estimate = () => {
   const classes = useStyles();
   const theme = useTheme();
 
-  const [questions, setQuestions] = useState(softwareQuestions);
+  const [questions, setQuestions] = useState(defaultQuestions);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   const defaultOptions = {
     loop: true,
@@ -372,15 +374,44 @@ const Estimate = () => {
   const handleSelect = id => {
     const newQuestions = cloneDeep(questions);
     // pull out currently active question
-    const currentlyActive = questions.filter(question => question.active);
+    const currentlyActive = newQuestions.filter(question => question.active);
     // get the index of that question
     const activeIndex = currentlyActive[0].id - 1;
+
     // finding the item that we have just selected
     const newSelected = newQuestions[activeIndex].options[id - 1];
-    // find the newly selected property and toggle it
-    newSelected.selected = !newSelected.selected;
 
-    setQuestions(newQuestions);
+    const previousSelected = currentlyActive[0].options.filter(
+      option => option.selected
+    );
+
+    switch (currentlyActive[0].subtitle) {
+      case 'Select one.':
+        if (previousSelected[0]) {
+          // to make sure we have only selected one
+          previousSelected[0].selected = !previousSelected[0].selected;
+        }
+        // find the newly selected property and toggle it
+        newSelected.selected = !newSelected.selected;
+        break;
+      default:
+        newSelected.selected = !newSelected.selected;
+        break;
+    }
+
+    switch (newSelected.title) {
+      case 'Custom Software Development':
+        setQuestions(softwareQuestions);
+        break;
+      case 'iOS/Android App Development':
+        setQuestions(softwareQuestions);
+        break;
+      case 'Website Development' :
+        setQuestions(websiteQuestions);
+        break;
+      default:
+        setQuestions(newQuestions)
+    }
   };
 
   return (
@@ -435,14 +466,21 @@ const Estimate = () => {
               <Grid item container>
                 {question.options.map(option => (
                   <Grid
+                    key={uuidv4()}
                     item
                     container
                     direction='column'
                     md
                     component={Button}
-                    style={{ borderRadius: 0, display: 'grid', textTransform: 'none', backgroundColor: option.selected ? theme.palette.common.orange : null }}
-                    onClick={() => handleSelect(option.id)}
-                    >
+                    style={{
+                      borderRadius: 0,
+                      display: 'grid',
+                      textTransform: 'none',
+                      backgroundColor: option.selected
+                        ? theme.palette.common.orange
+                        : null
+                    }}
+                    onClick={() => handleSelect(option.id)}>
                     <Grid item style={{ maxWidth: '14em' }}>
                       <Typography
                         variant='h6'
@@ -497,7 +535,9 @@ const Estimate = () => {
             </IconButton>
           </Grid>
           <Grid item>
-            <Button variant='container' className={classes.estimateButton}>
+            <Button variant='contained' className={classes.estimateButton}
+            onClick={() => setDialogOpen(true)}
+            >
               Get Estimate
             </Button>
           </Grid>
