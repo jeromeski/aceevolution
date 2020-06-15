@@ -63,6 +63,12 @@ const useStyles = makeStyles(theme => ({
     border: `2px solid ${theme.palette.common.blue}`,
     marginTop: '5em',
     borderRadius: 5
+  },
+  specialText: {
+    fontFamily: 'Raleway',
+    fontWeight: 700,
+    fontSize: '1.5rem',
+    color: theme.palette.common.orange
   }
 }));
 
@@ -334,6 +340,7 @@ const Estimate = () => {
 
   const [questions, setQuestions] = useState(defaultQuestions);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [total, setTotal] = useState(0)
 
   const defaultOptions = {
     loop: true,
@@ -468,6 +475,26 @@ const Estimate = () => {
     }
   };
 
+  const getTotal = () => {
+    let cost = 0;
+
+    const selections = questions.map(question =>
+      question.options.filter(option => option.selected)
+    ).filter(question => question.length > 0);
+    
+    selections.map(options => options.map(option => cost += option.cost))
+    
+
+    if (questions.length > 2) {
+      const userCost = questions.filter(question => question.title === 'How many users do you expect?').map(question => question.options.filter(option => option.selected))[0][0].cost;
+
+      cost -= userCost;
+      cost *= userCost;
+    }
+    setTotal(cost)
+    console.log(cost)
+  };
+
   return (
     <Grid container direction='row'>
       <Grid item container direction='column' lg wrap='nowrap'>
@@ -592,7 +619,10 @@ const Estimate = () => {
             <Button
               variant='contained'
               className={classes.estimateButton}
-              onClick={() => setDialogOpen(true)}>
+              onClick={() => {
+                setDialogOpen(true);
+                getTotal();
+              }}>
               Get Estimate
             </Button>
           </Grid>
@@ -653,8 +683,14 @@ const Estimate = () => {
                 />
               </Grid>
               <Grid item>
-                <Typography variant='body1' paragraph>We can create this digital solution for an estimated </Typography>
-                <Typography variant='body1' paragraph>Fill out your name, number and email, place your request, and we'll get back to you withy details moving forward and a final price. </Typography>
+                <Typography variant='body1' paragraph>
+                  We can create this digital solution for an estimated<span className={classes.specialText}>&nbsp;${total.toFixed(2)}</span>
+                </Typography>
+                <Typography variant='body1' paragraph>
+                  Fill out your name, number and email, place your request, and
+                  we'll get back to you withy details moving forward and a final
+                  price.{' '}
+                </Typography>
               </Grid>
             </Grid>
           </DialogContent>
