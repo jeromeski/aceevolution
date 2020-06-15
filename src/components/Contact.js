@@ -252,7 +252,7 @@ const Contact = props => {
               item
               container
               direction='column'
-              style={{ maxWidth: '20em' }}>
+              style={{ width: '20em' }}>
               <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
                   fullWidth
@@ -285,7 +285,7 @@ const Contact = props => {
                 />
               </Grid>
             </Grid>
-            <Grid item style={{ maxWidth: '20em' }}>
+            <Grid item style={{ width: '20em' }}>
               <TextField
                 fullWidth
                 InputProps={{ disableUnderline: true }}
@@ -324,7 +324,7 @@ const Contact = props => {
         </Grid>
       </Grid>
       <Dialog
-        fullScreen={matchesXS}
+        fullScreen={matchesSM}
         style={{ zIndex: 1302 }}
         open={open}
         onClose={() => setOpen(false)}
@@ -337,15 +337,15 @@ const Contact = props => {
               : matchesSM
               ? '5em'
               : matchesMD
-              ? '10em'
-              : '20em',
+              ? '15em'
+              : '25em',
             paddingRight: matchesXS
               ? 0
               : matchesSM
               ? '5em'
               : matchesMD
-              ? '10em'
-              : '20em'
+              ? '15em'
+              : '25em'
           }
         }}>
         <DialogContent>
@@ -359,7 +359,7 @@ const Contact = props => {
               item
               container
               direction='column'
-              style={{ maxWidth: '20em' }}>
+              style={{ width: '20em' }}>
               <Grid item style={{ marginBottom: '0.5em' }}>
                 <TextField
                   fullWidth
@@ -392,7 +392,7 @@ const Contact = props => {
                 />
               </Grid>
             </Grid>
-            <Grid item style={{ maxWidth: matchesXS ? '100%' : '20em' }}>
+            <Grid item style={{ width: matchesSM ? '100%' : '20em' }}>
               <TextField
                 fullWidth
                 InputProps={{ disableUnderline: true }}
