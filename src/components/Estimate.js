@@ -340,7 +340,14 @@ const Estimate = () => {
 
   const [questions, setQuestions] = useState(defaultQuestions);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [total, setTotal] = useState(0)
+  const [total, setTotal] = useState(0);
+
+  const [service, setService] = useState([]);
+  const [platform, setPlatform] = useState([]);
+  const [features, setFeatures] = useState([]);
+  const [customFeatures, setCustomFeatures] = useState('');
+  const [category, setCategory] = useState('');
+  const [users, setUsers] = useState('');
 
   const defaultOptions = {
     loop: true,
@@ -429,12 +436,15 @@ const Estimate = () => {
     switch (newSelected.title) {
       case 'Custom Software Development':
         setQuestions(softwareQuestions);
+        setService(newSelected.title)
         break;
       case 'iOS/Android App Development':
         setQuestions(softwareQuestions);
+        setService(newSelected.title)
         break;
       case 'Website Development':
         setQuestions(websiteQuestions);
+        setService(newSelected.title)
         break;
       default:
         setQuestions(newQuestions);
@@ -478,21 +488,24 @@ const Estimate = () => {
   const getTotal = () => {
     let cost = 0;
 
-    const selections = questions.map(question =>
-      question.options.filter(option => option.selected)
-    ).filter(question => question.length > 0);
-    
-    selections.map(options => options.map(option => cost += option.cost))
-    
+    const selections = questions
+      .map(question => question.options.filter(option => option.selected))
+      .filter(question => question.length > 0);
+
+    selections.map(options => options.map(option => (cost += option.cost)));
 
     if (questions.length > 2) {
-      const userCost = questions.filter(question => question.title === 'How many users do you expect?').map(question => question.options.filter(option => option.selected))[0][0].cost;
+      const userCost = questions
+        .filter(question => question.title === 'How many users do you expect?')
+        .map(question =>
+          question.options.filter(option => option.selected)
+        )[0][0].cost;
 
       cost -= userCost;
       cost *= userCost;
     }
-    setTotal(cost)
-    console.log(cost)
+    setTotal(cost);
+    console.log(cost);
   };
 
   return (
@@ -637,7 +650,7 @@ const Estimate = () => {
           </Grid>
           <DialogContent>
             <Grid container>
-              <Grid item container direction='column'>
+              <Grid item container direction='column' md={7}>
                 <Grid item style={{ marginBottom: '0.5em' }}>
                   <TextField
                     fullWidth
@@ -647,7 +660,7 @@ const Estimate = () => {
                     onChange={evt => setName(evt.target.value)}
                   />
                 </Grid>
-                <Grid item>
+                <Grid item style={{ marginBottom: '0.5em' }}>
                   <TextField
                     fullWidth
                     label='Email'
@@ -658,7 +671,7 @@ const Estimate = () => {
                     onChange={onChange}
                   />
                 </Grid>
-                <Grid>
+                <Grid item style={{ marginBottom: '0.5em' }}>
                   <TextField
                     fullWidth
                     label='Phone'
@@ -669,28 +682,72 @@ const Estimate = () => {
                     onChange={onChange}
                   />
                 </Grid>
+                <Grid item style={{ maxWidth: '20em' }}>
+                  <TextField
+                    fullWidth
+                    InputProps={{ disableUnderline: true }}
+                    className={classes.message}
+                    value={message}
+                    id='message'
+                    multiline
+                    rows={10}
+                    onChange={evt => setMessage(evt.target.value)}
+                  />
+                </Grid>
+                <Grid item>
+                  <Typography variant='body1' paragraph>
+                    We can create this digital solution for an estimated
+                    <span className={classes.specialText}>
+                      &nbsp;${total.toFixed(2)}
+                    </span>
+                  </Typography>
+                  <Typography variant='body1' paragraph>
+                    Fill out your name, number and email, place your request,
+                    and we'll get back to you withy details moving forward and a
+                    final price.{' '}
+                  </Typography>
+                </Grid>
               </Grid>
-              <Grid item style={{ maxWidth: '20em' }}>
-                <TextField
-                  fullWidth
-                  InputProps={{ disableUnderline: true }}
-                  className={classes.message}
-                  value={message}
-                  id='message'
-                  multiline
-                  rows={10}
-                  onChange={evt => setMessage(evt.target.value)}
-                />
-              </Grid>
-              <Grid item>
-                <Typography variant='body1' paragraph>
-                  We can create this digital solution for an estimated<span className={classes.specialText}>&nbsp;${total.toFixed(2)}</span>
-                </Typography>
-                <Typography variant='body1' paragraph>
-                  Fill out your name, number and email, place your request, and
-                  we'll get back to you withy details moving forward and a final
-                  price.{' '}
-                </Typography>
+              <Grid item container direction='column'md={5}>
+                <Grid item>
+                  <Grid container direction='column'>
+                    <Grid item container alignItems='center'>
+                      <Grid item>
+                        <img src={check} alt='checkmark'/>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant='body1'>
+                          You want {service}
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid item container alignItems='center'>
+                      <Grid item>
+                        <img src={check} alt='checkmark'/>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant='body1'>
+                          Second options check
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid item container alignItems='center'>
+                      <Grid item>
+                        <img src={check} alt='checkmark'/>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant='body1'>
+                          Third options check
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                  <Grid item>
+                   <Button variant='contained' className={classes.estimateButton}>Place Request
+                   <img src={send} alt='paper airplane' style={{marginLeft: '0.5em'}}/>
+                   </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </DialogContent>
