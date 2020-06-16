@@ -41,7 +41,7 @@ exports.sendMail = functions.https.onRequest((req, res) => {
 
       if(category) {
         mailOptions = {
-          to: 'jeruserone@gmail.com',
+          to: 'jerprojone@gmail.com',
           from: 'Arc Development',
           subject: 'Estimate received!',
           html: `

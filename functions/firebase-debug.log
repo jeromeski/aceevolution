@@ -1,0 +1,131 @@
+[debug] [2020-06-16T03:36:35.432Z] ----------------------------------------------------------------------
+[debug] [2020-06-16T03:36:35.435Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-06-16T03:36:35.435Z] CLI Version:   8.4.2
+[debug] [2020-06-16T03:36:35.435Z] Platform:      win32
+[debug] [2020-06-16T03:36:35.435Z] Node Version:  v14.2.0
+[debug] [2020-06-16T03:36:35.436Z] Time:          Tue Jun 16 2020 11:36:35 GMT+0800 (China Standard Time)
+[debug] [2020-06-16T03:36:35.437Z] ----------------------------------------------------------------------
+[debug] [2020-06-16T03:36:35.437Z] 
+[debug] [2020-06-16T03:36:35.448Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-06-16T03:36:35.449Z] > authorizing via signed-in user
+[debug] [2020-06-16T03:36:35.449Z] [iam] checking project material-ui-course-2a169 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-06-16T03:36:35.452Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-06-16T03:36:35.453Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-06-16T03:36:38.320Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 16 Jun 2020 03:36:39 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-06-16T03:36:38.366Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/material-ui-course-2a169:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2020-06-16T03:36:46.412Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 16 Jun 2020 03:36:47 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=172","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-06-16T03:36:46.415Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/material-ui-course-2a169/serviceAccounts/material-ui-course-2a169@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-06-16T03:36:48.338Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 16 Jun 2020 03:36:49 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'material-ui-course-2a169'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
+[info] +  functions: Finished running predeploy script. 
+[debug] [2020-06-16T03:36:59.179Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.1",
+    "nodemailer": "^6.4.8"
+  },
+  "devDependencies": {
+    "eslint": "^5.12.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[debug] [2020-06-16T03:37:01.853Z] [functions] runtime dependency check dates: warning: 2020-05-21T00:00:00.000Z error: 2020-06-23T00:00:00.000Z
+[debug] [2020-06-16T03:37:01.853Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/material-ui-course-2a169/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2020-06-16T03:37:01.854Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/material-ui-course-2a169/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2020-06-16T03:37:03.726Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 16 Jun 2020 03:37:04 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2020-06-16T03:37:13.426Z] Error: socket hang up
+    at connResetException (internal/errors.js:614:14)
+    at TLSSocket.socketOnEnd (_http_client.js:487:23)
+    at TLSSocket.emit (events.js:327:22)
+    at TLSSocket.EventEmitter.emit (domain.js:485:12)
+    at endReadableNT (_stream_readable.js:1225:12)
+    at processTicksAndRejections (internal/process/task_queues.js:84:21)
+[error] 
+[error] Error: Server Error. socket hang up
+[debug] [2020-06-16T04:29:53.788Z] ----------------------------------------------------------------------
+[debug] [2020-06-16T04:29:53.791Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js functions:shell
+[debug] [2020-06-16T04:29:53.791Z] CLI Version:   8.4.2
+[debug] [2020-06-16T04:29:53.791Z] Platform:      win32
+[debug] [2020-06-16T04:29:53.791Z] Node Version:  v14.2.0
+[debug] [2020-06-16T04:29:53.793Z] Time:          Tue Jun 16 2020 12:29:53 GMT+0800 (China Standard Time)
+[debug] [2020-06-16T04:29:53.793Z] ----------------------------------------------------------------------
+[debug] [2020-06-16T04:29:53.793Z] 
+[debug] [2020-06-16T04:29:53.808Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-06-16T04:29:53.809Z] > authorizing via signed-in user
+[debug] [2020-06-16T04:29:53.809Z] [iam] checking project material-ui-course-2a169 for permissions ["firebase.projects.get"]
+[debug] [2020-06-16T04:29:53.813Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-06-16T04:29:53.813Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-06-16T04:29:54.613Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Tue, 16 Jun 2020 04:29:55 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-27=\":443\"; ma=2592000,h3-25=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q049=\":443\"; ma=2592000,h3-Q048=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-06-16T04:29:54.648Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/material-ui-course-2a169:testIamPermissions  
+ {"permissions":["firebase.projects.get"]}
+[debug] [2020-06-16T04:30:16.189Z] [iam] error while checking permissions, command may fail: FirebaseError: Server Error. Client network socket disconnected before secure TLS connection was established
+[warn] !  Your requested "node" version "8" doesn't match your global version "14" {"metadata":{"emulator":{"name":"functions"},"message":"Your requested \"node\" version \"8\" doesn't match your global version \"14\""}}
+[debug] [2020-06-16T04:30:17.230Z] [functions] Watching "C:\Users\Jeromeski\Desktop\CRA-TUT-PROJECTS\aceevolution\functions" for Cloud Functions...
+[debug] [2020-06-16T04:30:17.533Z] DEBUG: [worker-pool] addWorker(~diagnostic~)
+[debug] [2020-06-16T04:30:17.533Z] DEBUG: [worker-pool] Adding worker with key ~diagnostic~, total=1
+[debug] [2020-06-16T04:30:17.533Z] DEBUG: [worker-pool] submitWork(triggerId=)
+[debug] [2020-06-16T04:30:17.534Z] DEBUG: [worker-~diagnostic~-63d766d8-7386-4194-93ef-fd198dc66399]: Assigning socketPath: \\?\pipe\C:\Users\Jeromeski\Desktop\CRA-TUT-PROJECTS\aceevolution\functions\8484
+[debug] [2020-06-16T04:30:17.535Z] DEBUG: [worker-~diagnostic~-63d766d8-7386-4194-93ef-fd198dc66399]: BUSY
+[debug] [2020-06-16T04:30:18.213Z] DEBUG: [runtime-status] [8484] Functions runtime initialized. {"cwd":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions","node_version":"14.2.0"}
+[debug] [2020-06-16T04:30:18.214Z] DEBUG: [runtime-status] [8484] Disabled runtime features: undefined
+[debug] [2020-06-16T04:30:18.218Z] DEBUG: [runtime-status] [8484] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-06-16T04:30:18.220Z] DEBUG: [runtime-status] [8484] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.7.0","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-06-16T04:30:18.223Z] DEBUG: [runtime-status] [8484] Outgoing network have been stubbed. [{"name":"http","status":"mocked"},{"name":"http","status":"mocked"},{"name":"https","status":"mocked"},{"name":"https","status":"mocked"},{"name":"net","status":"mocked"}]
+[debug] [2020-06-16T04:30:18.224Z] DEBUG: [runtime-status] [8484] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.7.0","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-06-16T04:30:18.283Z] DEBUG: [runtime-status] [8484] Checked functions.config() {"config":{}}
+[debug] [2020-06-16T04:30:18.283Z] DEBUG: [runtime-status] [8484] firebase-functions has been stubbed. {"functionsResolution":{"declared":true,"installed":true,"version":"3.7.0","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-functions\\lib\\index.js"}}
+[debug] [2020-06-16T04:30:18.284Z] DEBUG: [runtime-status] [8484] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.7.0","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-06-16T04:30:18.286Z] DEBUG: [runtime-status] [8484] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2020-06-16T04:30:18.287Z] DEBUG: [runtime-status] [8484] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.7.0","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2020-06-16T04:30:18.309Z] DEBUG: [runtime-status] [8484] firebase-admin has been stubbed. {"adminResolution":{"declared":true,"installed":true,"version":"8.12.1","resolution":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\node_modules\\firebase-admin\\lib\\index.js"}}
+[debug] [2020-06-16T04:30:18.380Z] DEBUG: [runtime-status] [8484] initializeApp(DEFAULT) {"databaseURL":"https://material-ui-course-2a169.firebaseio.com","storageBucket":"material-ui-course-2a169.appspot.com","projectId":"material-ui-course-2a169"}
+[warn] !  It looks like you're trying to access functions.config().user but there is no value there. You can learn more about setting up config here: https://firebase.google.com/docs/functions/local-emulator {"metadata":{"emulator":{"name":"functions"},"message":"It looks like you're trying to access functions.config().user but there is no value there. You can learn more about setting up config here: https://firebase.google.com/docs/functions/local-emulator"}}
+[debug] [2020-06-16T04:30:18.382Z] DEBUG: [runtime-status] [8484] Error in handleMessage: {"frb":{"cwd":"C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions","projectId":"material-ui-course-2a169","triggerId":"","emulators":{},"socketPath":"\\\\?\\pipe\\C:\\Users\\Jeromeski\\Desktop\\CRA-TUT-PROJECTS\\aceevolution\\functions\\8484"},"opts":{"nodeBinary":"C:\\Program Files\\nodejs\\node.exe"}} => Error: Cannot find module './tsconfig.json'
+Require stack:
+- C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js: Error: Cannot find module './tsconfig.json'
+Require stack:
+- C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js
+    at Function.Module._resolveFilename (internal/modules/cjs/loader.js:1020:15)
+    at Function.resolve (internal/modules/cjs/helpers.js:78:19)
+    at requireAsync (C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:33:44)
+    at C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:566:33
+    at Generator.next (<anonymous>)
+    at C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:4:12)
+    at moduleResolutionDetective (C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:564:12)
+    at C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js:653:23
+[warn] !  functions: Cannot find module './tsconfig.json'
+Require stack:
+- C:\Users\Jeromeski\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\functionsEmulatorRuntime.js {"metadata":{"emulator":{"name":"functions"},"message":"Cannot find module './tsconfig.json'\nRequire stack:\n- C:\\Users\\Jeromeski\\AppData\\Roaming\\npm\\node_modules\\firebase-tools\\lib\\emulator\\functionsEmulatorRuntime.js"}}
+[warn] !  Your function was killed because it raised an unhandled error. {"metadata":{"emulator":{"name":"functions"},"message":"Your function was killed because it raised an unhandled error."}}
+[debug] [2020-06-16T04:30:18.396Z] DEBUG: [worker-~diagnostic~-63d766d8-7386-4194-93ef-fd198dc66399]: exited
+[debug] [2020-06-16T04:30:18.396Z] DEBUG: [worker-~diagnostic~-63d766d8-7386-4194-93ef-fd198dc66399]: FINISHED

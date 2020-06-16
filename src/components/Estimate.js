@@ -811,7 +811,7 @@ const Estimate = () => {
         {questions
           .filter(question => question.active)
           .map((question, index) => (
-            <React.Fragment key={index}>
+            <React.Fragment key={uuidv4()}>
               <Grid item>
                 <Typography
                   variant='h2'
@@ -993,13 +993,16 @@ const Estimate = () => {
                   multiline
                   rows={10}
                   onChange={evt => setMessage(evt.target.value)}
+                  placeholder='Tell us more about your project'
                 />
               </Grid>
               <Grid item>
                 <Typography
                   variant='body1'
                   align={matchesSM ? 'center' : undefined}
-                  paragraph>
+                  paragraph
+                  style={{lineHeight: '1.25'}}
+                  >
                   We can create this digital solution for an estimated
                   <span className={classes.specialText}>
                     &nbsp;${total.toFixed(2)}
@@ -1031,7 +1034,16 @@ const Estimate = () => {
                 <Button
                   variant='contained'
                   className={classes.estimateButton}
-                  onClick={sendEstimate}>
+                  onClick={sendEstimate}
+                  disabled={
+                    name.length === 0 ||
+                    message.length === 0 ||
+                    phoneHelper.length !== 0 ||
+                    emailHelper.length !== 0 ||
+                    email.length === 0 ||
+                    phone.length === 0
+                  }
+                  >
                   {loading ? (
                     <CircularProgress />
                   ) : (
