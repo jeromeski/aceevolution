@@ -637,16 +637,26 @@ const Estimate = () => {
   const estimateDisabled = () => {
     let disabled = true;
 
-    const emptySelections = questions.map(question => question.options.filter(option => option.selected)).filter(question => question.length === 0)
-    
-    if(questions.length === 2) {
-      if(emptySelections.length === 1) {
-        return false
+    const emptySelections = questions
+      .map(question => question.options.filter(option => option.selected))
+      .filter(question => question.length === 0);
+
+    if (questions.length === 2) {
+      if (emptySelections.length === 1) {
+        disabled = false;
       }
     } else if (questions.length === 1) {
-      return true
+      disabled = true;
+    } else if (
+      emptySelections.length < 3 &&
+      questions[questions.length - 1].options.filter(option => option.selected)
+        .length > 0 
+    ) {
+      disabled = false;
     }
-  }
+    return disabled
+      
+  };
 
   const softwareSelection = (
     <Grid container direction='column'>
@@ -1050,6 +1060,14 @@ const Estimate = () => {
           </Grid>
         </DialogContent>
       </Dialog>
+      <Snackbar
+        open={alert.open}
+        message={alert.message}
+        ContentProps={{ style: { backgroundColor: alert.backgroundColor } }}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        onClose={() => setAlert({ ...alert, open: false })}
+        autoHideDuration={4000}
+      />
     </Grid>
   );
 };
